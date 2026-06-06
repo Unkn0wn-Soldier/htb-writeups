@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Obsidian_Guia_Completa.md",
+                "file": "!_Antes de CERRAR Obsidian_!.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Obsidian_Guia_Completa"
+              "title": "!_Antes de CERRAR Obsidian_!"
             }
           }
         ]
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Obsidian_Guia_Completa.md",
+                "file": "!_Antes de CERRAR Obsidian_!.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +104,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Enlaces entrantes de Obsidian_Guia_Completa"
+              "title": "Enlaces entrantes de !_Antes de CERRAR Obsidian_!"
             }
           },
           {
@@ -113,12 +113,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Obsidian_Guia_Completa.md",
+                "file": "!_Antes de CERRAR Obsidian_!.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Enlaces salientes de Obsidian_Guia_Completa"
+              "title": "Enlaces salientes de !_Antes de CERRAR Obsidian_!"
             }
           },
           {
@@ -156,13 +156,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Obsidian_Guia_Completa.md",
+                "file": "!_Antes de CERRAR Obsidian_!.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Esquema de Obsidian_Guia_Completa"
+              "title": "Esquema de !_Antes de CERRAR Obsidian_!"
             }
           },
           {
@@ -199,11 +199,17 @@
   },
   "active": "4b85b1e758a4f99d",
   "lastOpenFiles": [
-    "_Templates/Technique_Template.md",
+    "HTB/Meow/Meow.md",
+    "url.md",
     "_Templates/HTB_Template_Maquina.md",
-    "HTB/Lame/Lame.md",
-    "HTB/Lame/Img",
-    "HTB/Lame",
+    "_Templates/Technique_Template.md",
+    "Roadmap_2026.md",
+    "00_Index.md",
+    "Obsidian_Guia_Completa.md",
+    "Metodologia_HTB.md",
+    "!_Antes de CERRAR Obsidian_!.md",
+    "HTB/Meow/Img",
+    "HTB/Meow",
     "aa.md",
     "adsasddasdasdas.md",
     "Aaaaa.md",
@@ -212,8 +218,6 @@
     "2026-06-05.md",
     "HTB/Sin título 1.md",
     "Técnicas/Active Directory/Sin título.md",
-    "Sin título.md",
-    "Roadmap_2026.md",
     "_Templates",
     "Certificaciones/OSCP",
     "Certificaciones/CPTS",
@@ -221,8 +225,6 @@
     "Cheatsheets",
     "Técnicas/Active Directory",
     "Técnicas/Privesc",
-    "Técnicas/Explotación",
-    "00_Index.md",
-    "Obsidian_Guia_Completa.md"
+    "Técnicas/Explotación"
   ]
 }

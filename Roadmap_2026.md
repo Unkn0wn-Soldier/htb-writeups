@@ -27,18 +27,18 @@
 
 Estas 10 máquinas son el punto de partida. Cubren los vectores más frecuentes en cualquier examen práctico. Están ordenadas de menor a mayor complejidad.
 
-| # | Máquina | OS | Dificultad | Técnica principal |
-|---|---------|-----|-----------|-------------------|
-| 1 | **Lame** | Linux | Easy | SMB Samba 3.x exploit (CVE-2007-2447) |
-| 2 | **Legacy** | Windows | Easy | MS08-067 (NetAPI), SMB |
-| 3 | **Blue** | Windows | Easy | EternalBlue MS17-010 |
-| 4 | **Shocker** | Linux | Easy | Shellshock (CGI bash) |
-| 5 | **Bashed** | Linux | Easy | Web shell expuesta, sudo |
-| 6 | **Nibbles** | Linux | Easy | Nibbleblog CMS, file upload |
-| 7 | **Devel** | Windows | Easy | IIS FTP anónimo + Meterpreter |
-| 8 | **Optimum** | Windows | Easy | HFS exploit, Sherlock (privesc) |
-| 9 | **Jerry** | Windows | Easy | Apache Tomcat manager, WAR deploy |
-| 10 | **Beep** | Linux | Easy | Elastix/FreePBX LFI → RCE |
+| #   | Máquina     | OS      | Dificultad | Técnica principal                     |
+| --- | ----------- | ------- | ---------- | ------------------------------------- |
+| 1   | **Lame**    | Linux   | Easy       | SMB Samba 3.x exploit (CVE-2007-2447) |
+| 2   | **Legacy**  | Windows | Easy       | MS08-067 (NetAPI), SMB                |
+| 3   | **Blue**    | Windows | Easy       | EternalBlue MS17-010                  |
+| 4   | **Shocker** | Linux   | Easy       | Shellshock (CGI bash)                 |
+| 5   | **Bashed**  | Linux   | Easy       | Web shell expuesta, sudo              |
+| 6   | **Nibbles** | Linux   | Easy       | Nibbleblog CMS, file upload           |
+| 7   | **Devel**   | Windows | Easy       | IIS FTP anónimo + Meterpreter         |
+| 8   | **Optimum** | Windows | Easy       | HFS exploit, Sherlock (privesc)       |
+| 9   | **Jerry**   | Windows | Easy       | Apache Tomcat manager, WAR deploy     |
+| 10  | **Beep**    | Linux   | Easy       | Elastix/FreePBX LFI → RCE             |
 
 **Meta al terminar Fase 0:** 10 writeups en Obsidian · 10 writeups en GitHub · conoces el flujo nmap→foothold→privesc en modo automático.
 

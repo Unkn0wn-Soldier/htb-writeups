@@ -1,0 +1,1 @@
+Cuando termines de trabajar en Obsidian, abres la paleta de comandos con `Ctrl+P`, ejecutas **"Git: Commit all changes"** y luego **"Git: Push"**. Eso es todo. Tus notas quedan respaldadas en GitHub y tu portafolio se actualiza.

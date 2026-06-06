@@ -2,22 +2,22 @@
 tags:
   - htb
   - easy
-  - en-progreso
-  - windows
-ip: 10.10.10.XXX
-os: windows
+  - linux
+  - Terminada
+ip: 10.129.31.187
+os: Linux
 difficulty: Easy
-status: en-progreso
-tiempo: 0h 0m
+status: Terminada
+tiempo: 1h 0m
 fecha_inicio: 2026-06-05
 fecha_completada: —
 puntos: 0
 ---
-# 🖥️ [Lame] — [Windows] — [Easy]
+# 🖥️ [Meow] — [Linux] — [Easy]
 
 > [!info] Resumen
-> **IP:** `10.10.10.XXX`  |  **OS:** Linux/Windows  |  **Dificultad:** Easy/Medium/Hard
-> **Estado:** En progreso  |  **Tiempo total:** Xh Xm
+> **IP:** `10.129.31.187`  |  **OS:** Linux  |  **Dificultad:** Easy
+> **Estado:** En progreso  |  **Tiempo total:** 1h 0m
 
 ---
 
@@ -26,18 +26,16 @@ puntos: 0
 ### Nmap — Puertos rápidos
 
 ```bash
-nmap -sC -sV -oA nmap/inicial 10.10.10.XXX
-nmap -p- --min-rate 5000 -oA nmap/full 10.10.10.XXX
+nmap -sS 10.129.31.187
 ```
 
 **Puertos encontrados:**
 
-| Puerto | Servicio | Versión | Notas |
-| ------ | -------- | ------- | ----- |
-| 22     | SSH      | OpenSSH X.X | — |
-| 80     | HTTP     | Apache X.X | — |
+| Puerto | Servicio | Versión       | Notas |
+| ------ | -------- | ------------- | ----- |
+| 23     | Telnet   | Linux telnetd | —     |
 
-### Reconocimiento Web
+### Reconocimiento Web (INNECESARIO)
 
 ```bash
 gobuster dir -u http://10.10.10.XXX -w /usr/share/wordlists/dirb/common.txt -x php,html,txt
@@ -49,7 +47,7 @@ ffuf -u http://10.10.10.XXX/FUZZ -w /usr/share/seclists/Discovery/Web-Content/ra
 - `/admin` → Panel de administración (código 200)
 - `/uploads` → Directorio de subida de archivos
 
-### Otros servicios
+### Otros servicios (NO ENCONTRADOS)
 
 > [!note] SMB / FTP / LDAP / Otros
 > Anotar aquí lo relevante de servicios adicionales encontrados.
@@ -72,32 +70,26 @@ ftp 10.10.10.XXX
 
 ### Vulnerabilidad Identificada
 
-**Nombre:** (ej. Shellshock, SQLi, File Upload bypass)  
-**CVE:** CVE-XXXX-XXXXX (si aplica)  
-**Por qué funciona:** Explicar el concepto con tus propias palabras.
+**Nombre:** Mala configuración de autenticació, servicio telnet expuesto y login con usuario root y sin contraseña.  
+**CVE:** No aplica. 
+**Por qué funciona:** Porque el servicio Telnet está abierto y tiene un login por defecto o muy básico y sin contraseña.
 
 ### Exploit Utilizado
 
 ```bash
-# Comando o script exacto que funcionó
-# Agregar flags y parámetros usados
+telnet 10.129.31.187
+user: root
+password: (en blanco)
+resultado: acceso root
 ```
 
 > [!tip] Lo que aprendí aquí
-> Anotar aquí algo que no sabías antes de esta sección.
+> Al tener un servicio telnet abierto, probar login con usuario root y password en blanco.
 
 ### Shell Obtenida
 
-- **Usuario:** `www-data`
-- **Tipo de shell:** bash / powershell / cmd
-- **Estabilización de shell:**
-
-```bash
-# Estabilizar shell si es necesario
-python3 -c 'import pty; pty.spawn("/bin/bash")'
-export TERM=xterm
-# Ctrl+Z → stty raw -echo; fg
-```
+- **Usuario:** `root`
+- **Tipo de shell:** bash
 
 ---
 
@@ -106,19 +98,16 @@ export TERM=xterm
 ### Enumeración Post-Foothold
 
 ```bash
-id; whoami; uname -a; hostname
-cat /etc/passwd | grep -v nologin
-cat /etc/cron* /etc/crontab /var/spool/cron/* 2>/dev/null
-find / -perm -4000 2>/dev/null
-sudo -l
-env
+Se realizó un ls
+posteriormente se hizo un cat flag.txt, resultando en lo siguiente:
+b40abdfe23665f766f9c61ecba8a4c19
 ```
 
 **Hallazgos relevantes:**
 
-- SUID encontrado: `...`
-- Sudo permisos: `...`
-- Archivos interesantes: `...`
+- SUID encontrado: `no escaneados`
+- Sudo permisos: `permiso root`
+- Archivos interesantes: `directorio snap`
 
 ### Método de Escalación a User
 
@@ -126,18 +115,18 @@ env
 > Describir el método con tus palabras. ¿Por qué fue posible? ¿Qué condición lo habilitó?
 
 ```bash
-# Comandos exactos usados para escalar a user
+No se realizó escalada de privilegios ya que no fue necesario, al momento de hacer login correcto, se ingresó con usuario root, teniendo privilegios máximos.
 ```
 
 ### Flag de Usuario
 
 ```
-user.txt → [CAPTURADA ✓]
+flag.txt → [CAPTURADA ✓]
 ```
 
 ---
 
-## 4. Escalación a Root (Root Flag)
+## 4. Escalación a Root (Root Flag) (NO APLICA)
 
 ### Enumeración de Privesc
 
@@ -177,29 +166,28 @@ root.txt → [CAPTURADA ✓]
 ## 5. Lecciones Aprendidas
 
 > [!danger] ¿Qué no sabía antes de esta máquina?
-> - **Técnica X:** Explicar qué es y cómo funciona, en tus palabras.
-> - **Tool Y:** Para qué sirve y cuándo usarla.
+> - **Técnica de Login:** Login a servicio telnet expuesto utilizando credenciales de usuario comunes como root y password en blanco.
+> - **Nmap:** Escaneo de puertos y servicios.
 
 ### ¿Dónde me bloqueé y por qué?
 
-| Fase | Tiempo bloqueado | Causa real |
-| ---- | ---------------- | ---------- |
-| — | — | — |
+| Fase  | Tiempo bloqueado | Causa real                                                       |
+| ----- | ---------------- | ---------------------------------------------------------------- |
+| Login | 15 min.          | No vi probé root en el login, tuve que ver la sugerencia de HTB. |
 
 ### Técnicas a Profundizar
 
-- [ ] Técnica X → Buscar en HackTricks
-- [ ] Tool Y → Leer documentación oficial
-- [ ] CVE Z → Entender el funcionamiento interno
+- [x] Login Telnet → Buscar en HackTricks
+- [x] NMAP → Leer documentación oficial
+- [x] Sin CVE  → Entender el funcionamiento interno
 
 ### Herramientas Usadas
 
 | Herramienta | Para qué la usé en esta máquina |
 | ----------- | ------------------------------- |
-| nmap | Reconocimiento de puertos |
-| gobuster | Enumeración de directorios web |
+| nmap        | Reconocimiento de puertos       |
 
-### Conexión con Otras Máquinas / Técnicas
+### Conexión con Otras Máquinas / Técnicas (COMPLETAR DESPUÉS)
 
 - Técnica similar a: `[[HTB/NombreMáquina/NombreMáquina]]`
 - Ver también: `[[Técnicas/Nombre-Técnica]]`
@@ -208,7 +196,5 @@ root.txt → [CAPTURADA ✓]
 
 ## 6. Referencias
 
-- [HackTricks - Nombre Técnica](https://book.hacktricks.xyz/)
-- [CVE o Exploit utilizado](url)
-- [Writeup oficial HTB](url)
-- [IppSec video](https://ippsec.rocks/)
+- [HackTricks - Login Telnet Root]([https://book.hacktricks.xyz/](https://cyberlabhelp.hashnode.dev/hackthebox-meow-linux-room-full-walkthrough))
+
