@@ -4,21 +4,17 @@
     "type": "split",
     "children": [
       {
-        "id": "5f11f5aa82d52010",
+        "id": "368451ec24f557cd",
         "type": "tabs",
         "children": [
           {
-            "id": "4b85b1e758a4f99d",
+            "id": "fe879d774377a7d1",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Perfil_César_Asesoría.md",
-                "mode": "source",
-                "source": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "Perfil_César_Asesoría"
+              "title": "Nueva pestaña"
             }
           }
         ]
@@ -197,8 +193,9 @@
       "obsidian-kanban:Create new board": false
     }
   },
-  "active": "4b85b1e758a4f99d",
+  "active": "cddf0c7a9bb3c3fe",
   "lastOpenFiles": [
+    "Perfil_César_Asesoría.md",
     "Obsidian_Guia_Completa.md",
     "_Templates/HTB_Template_Maquina.md",
     "_Templates/Technique_Template.md",
