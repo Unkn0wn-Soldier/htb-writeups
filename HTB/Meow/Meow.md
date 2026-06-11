@@ -15,7 +15,7 @@ status: Terminada
 tiempo: 1h 0m
 fecha_inicio: 2026-06-05
 fecha_completada: 2026-06-05
-puntos: 0
+puntos: 150
 mitre_tactics:
   - TA0001 Initial Access
   - TA0006 Credential Access

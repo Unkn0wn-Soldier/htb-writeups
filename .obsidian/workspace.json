@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "!_Antes de COMENZAR-CERRAR Obsidian_!.md",
+                "file": "HTB/Fawn/Fawn.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "!_Antes de COMENZAR-CERRAR Obsidian_!"
+              "title": "Fawn"
             }
           }
         ]
@@ -199,15 +199,18 @@
   },
   "active": "fe879d774377a7d1",
   "lastOpenFiles": [
+    "HTB/Meow/Meow.md",
+    "HTB/Fawn/Fawn.md",
     "00_Index.md",
-    "Perfil_César_Asesoría.md",
-    "CLAUDE.md",
-    "Obsidian_Guia_Completa.md",
     "_Templates/HTB_Template_Maquina.md",
     "_Templates/Technique_Template.md",
     "!_Antes de COMENZAR-CERRAR Obsidian_!.md",
+    "HTB/Fawn/Img",
+    "HTB/Fawn",
+    "Perfil_César_Asesoría.md",
+    "CLAUDE.md",
+    "Obsidian_Guia_Completa.md",
     "Roadmap_2026.md",
-    "HTB/Meow/Meow.md",
     "Sin título.md",
     "2026-06-07.md",
     "Untitled Kanban.md",
@@ -228,8 +231,6 @@
     "Certificaciones/CPTS",
     "Certificaciones",
     "Cheatsheets",
-    "Técnicas/Active Directory",
-    "Técnicas/Privesc",
-    "Técnicas/Explotación"
+    "Técnicas/Active Directory"
   ]
 }
