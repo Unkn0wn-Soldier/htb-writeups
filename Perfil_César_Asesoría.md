@@ -2,7 +2,7 @@
 
 > [!info] Documento interno de contexto
 > Este archivo es para uso de la asesoría. Resume el perfil, objetivos, contexto y acuerdos de trabajo. Se actualiza cuando el contexto cambia significativamente.
-> Última actualización: Junio 2026.
+> Última actualización: 2026-06-11 — Sesión 1 completada. 2 máquinas SP Tier 0 terminadas.
 
 ---
 
@@ -99,18 +99,26 @@ Crear un negocio propio de servicios de ciberseguridad ofensiva (**Proyecto Cón
 
 ## 9. Acuerdos de trabajo
 
-- **Formato por máquina:** teoría antes de la práctica (PDF o nota en vault), luego máquina, luego writeup mejorado con perspectiva defensiva + MITRE
-- **Estándar de writeup:** el nivel del writeup de Meow es el mínimo aceptable
-- **Ritmo de revisión:** cada 2 semanas revisar progreso contra el roadmap
-- **Conexión Threat Hunting:** en cada máquina desde Tier 1 en adelante, añadir sección "¿Qué vería un Threat Hunter en este ataque?"
-- **GitHub:** publicar writeups una vez la máquina sea retirada por HTB
-- **Sin complacencia:** si el ritmo está por debajo del necesario, se dice directamente
+- **PDF antes de cada máquina:** detallado y explicativo — contexto, protocolo, herramientas, autoevaluación
+- **Writeups:** concisos y precisos — solo lo necesario para resolver o revisar rápido en examen
+  - Formato fijo: recon (tabla) → explotación (comandos) → MITRE (tabla) → detección/remediación (bullets) → lecciones (máx. 3)
+  - Sin párrafos teóricos — eso va en el PDF
+  - El asesor corrige errores técnicos del estudiante al pulir el writeup
+- **Template activo:** `_Templates/HTB_Template_Maquina.md` (versión concisa, jun-2026)
+- **Desde Tier 1:** añadir sección "¿Qué vería un Threat Hunter?" en cada writeup
+- **Ritmo de revisión:** cada 2 semanas contra el roadmap
+- **Sin complacencia:** si el ritmo cae, se dice directo
+- **GitHub:** publicar writeups cuando la máquina sea retirada por HTB
+- **Vault:** CLAUDE.md + Perfil + 00_Index se actualizan al cierre de cada sesión
 
 ---
 
-## 10. Siguiente acción recomendada
+## 10. Progreso y siguiente acción
 
-1. **Hoy/mañana:** Hacer máquina Fawn con el PDF de teoría leído → writeup con template profesional
-2. **Esta semana:** Completar Tier 0 (máquinas 2-8) — son rápidas, menos de 30 min cada una
-3. **Antes del próximo viernes:** Primer commit en GitHub (aunque sea solo el writeup de Meow)
-4. **Pendiente definir:** Qué es el Proyecto de Ingeniería universitario → evaluar si tiene sinergia con el vault
+**Completadas:** Meow ✅ · Fawn ✅ (2/24 SP Tier 0 · 2/50 total)
+
+**Siguiente:**
+1. Leer PDF teoría SMB (Dancing) → hacer Dancing → traer notas brutas
+2. Completar Tier 0 antes de fin de junio (6 máquinas restantes)
+3. Primer commit en GitHub pendiente — hacerlo al terminar Tier 0
+4. Pendiente definir: sinergia Proyecto de Ingeniería con el vault

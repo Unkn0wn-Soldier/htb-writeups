@@ -7,10 +7,10 @@
 
 ## Estado Actual
 
-| Métrica                       | Progreso             |
-| ----------------------------- | -------------------- |
-| Máquinas HTB completadas      | 1 / 50               |
-| Starting Point completadas    | 1 / 24 (Tier 0: 1/8) |
+| Métrica                       | Progreso                                      |
+| ----------------------------- | --------------------------------------------- |
+| Máquinas HTB completadas      | 3 / 50                                        |
+| Starting Point completadas    | 3 / 20 accesibles (Tier 0: 3/4 free · 4 VIP+) |
 | Writeups publicados en GitHub | 0                    |
 | Técnicas documentadas         | 0                    |
 | Módulos CPTS completados      | En progreso          |
@@ -41,13 +41,13 @@
 | #   | Máquina     | Estado      | Writeup           |
 | --- | ----------- | ----------- | ----------------- |
 | 1   | Meow        | ✅ Terminada | [[HTB/Meow/Meow]] |
-| 2   | Fawn        | ⬜ Pendiente | —                 |
-| 3   | Dancing     | ⬜ Pendiente | —                 |
+| 2   | Fawn        | ✅ Terminada | [[HTB/Fawn/Fawn]] |
+| 3   | Dancing     | ✅ Terminada | [[HTB/Dancing/Dancing]] |
 | 4   | Redeemer    | ⬜ Pendiente | —                 |
-| 5   | Explosion   | ⬜ Pendiente | —                 |
-| 6   | Preignition | ⬜ Pendiente | —                 |
-| 7   | Mongod      | ⬜ Pendiente | —                 |
-| 8   | Synced      | ⬜ Pendiente | —                 |
+| 5   | Explosion   | 🔒 VIP+     | —                 |
+| 6   | Preignition | 🔒 VIP+     | —                 |
+| 7   | Mongod      | 🔒 VIP+     | —                 |
+| 8   | Synced      | 🔒 VIP+     | —                 |
 
 ### Tier 1 (Free)
 
@@ -104,3 +104,5 @@ LIMIT 20
 | Semana | Máquinas | Writeups | Técnica nueva aprendida |
 |--------|----------|----------|------------------------|
 | Jun W1 | 1 (Meow) | 1 | Telnet · default creds · MITRE T1078.001 |
+| Jun W2 | 1 (Fawn) | 1 | FTP anonymous login · CVE-1999-0497 · `get` vs shell |
+| Jun W3 | 1 (Dancing) | 1 | SMB null session · T1021.002 · smbclient shell escape (!cmd vs cmd) |
