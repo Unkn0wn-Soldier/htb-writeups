@@ -4,42 +4,24 @@
     "type": "split",
     "children": [
       {
-        "id": "368451ec24f557cd",
+        "id": "641d8c6cda01eb71",
         "type": "tabs",
         "children": [
           {
-            "id": "fe879d774377a7d1",
-            "type": "leaf",
-            "state": {
-              "type": "canvas",
-              "state": {
-                "file": "HTB/Dancing/Img/Dancing.canvas",
-                "viewState": {
-                  "x": 0,
-                  "y": 38.5,
-                  "zoom": 0
-                }
-              },
-              "icon": "lucide-layout-dashboard",
-              "title": "Dancing"
-            }
-          },
-          {
-            "id": "c522c3c7fa8bbbcf",
+            "id": "c9399b4a652ba0f9",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "HTB/Dancing/Dancing.md",
+                "file": "!_Antes de COMENZAR-CERRAR Obsidian_!.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Dancing"
+              "title": "!_Antes de COMENZAR-CERRAR Obsidian_!"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -112,7 +94,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "!_Antes de CERRAR Obsidian_!.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -122,7 +103,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Enlaces entrantes de !_Antes de CERRAR Obsidian_!"
+              "title": "Enlaces entrantes"
             }
           },
           {
@@ -174,13 +155,12 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "!_Antes de CERRAR Obsidian_!.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Esquema de !_Antes de CERRAR Obsidian_!"
+              "title": "Esquema"
             }
           },
           {
@@ -189,11 +169,12 @@
             "state": {
               "type": "calendar",
               "state": {},
-              "icon": "calendar-with-checkmark",
-              "title": "Calendar"
+              "icon": "lucide-ghost",
+              "title": "calendar"
             }
           }
-        ]
+        ],
+        "currentTab": 3
       }
     ],
     "direction": "horizontal",
@@ -202,6 +183,7 @@
   },
   "left-ribbon": {
     "hiddenItems": {
+      "obsidian-kanban:Create new board": false,
       "switcher:Abrir selector rápido": false,
       "graph:Abrir vista gráfica": false,
       "canvas:Crear nuevo lienzo": false,
@@ -211,15 +193,24 @@
       "bases:Crear nueva base": false,
       "templater-obsidian:Templater": false,
       "obsidian-git:Open Git source control": false,
-      "obsidian-excalidraw-plugin:Nuevo Bosquejo": false,
-      "obsidian-kanban:Create new board": false
+      "obsidian-excalidraw-plugin:Nuevo Bosquejo": false
     }
   },
-  "active": "c522c3c7fa8bbbcf",
+  "active": "c9399b4a652ba0f9",
   "lastOpenFiles": [
-    "HTB/Dancing/Img/Dancing.canvas",
-    "HTB/Dancing/Dancing.md",
     "!_Antes de COMENZAR-CERRAR Obsidian_!.md",
+    "_Templates/Technique_Template.md",
+    "Untitled Kanban.md",
+    "CLAUDE.md",
+    "00_Index.md",
+    "Excalidraw/Drawing 2026-06-19 23.08.02.excalidraw.md",
+    "Sin título.base",
+    "Excalidraw",
+    "Sin título.canvas",
+    "2026-06-19.md",
+    "_Templates/HTB_Template_Maquina.md",
+    "HTB/Dancing/Dancing.md",
+    "HTB/Dancing/Img/Dancing.canvas",
     "Pasted image 20260613024625.png",
     "Pasted image 20260613023557.png",
     "Pasted image 20260613022341.png",
@@ -233,18 +224,13 @@
     "Perfil_César_Asesoría.md.tmp.4308.2056f874bbda",
     "Teoría_Dancing_SMB.pdf",
     "HTB/Meow/Meow.md",
-    "00_Index.md",
-    "_Templates/HTB_Template_Maquina.md",
-    "_Templates/Technique_Template.md",
     "HTB/Fawn/Img",
     "HTB/Fawn",
     "Perfil_César_Asesoría.md",
-    "CLAUDE.md",
     "Obsidian_Guia_Completa.md",
     "Roadmap_2026.md",
     "Sin título.md",
     "2026-06-07.md",
-    "Untitled Kanban.md",
     "url.md",
     "Metodologia_HTB.md",
     "HTB/Meow/Img",
@@ -253,10 +239,6 @@
     "adsasddasdasdas.md",
     "Aaaaa.md",
     "HTB/Aaaa.md",
-    "HTB/Easy.md",
-    "2026-06-05.md",
-    "HTB/Sin título 1.md",
-    "_Templates",
-    "Certificaciones/OSCP"
+    "HTB/Easy.md"
   ]
 }
