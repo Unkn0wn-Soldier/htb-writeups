@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "641d8c6cda01eb71",
+        "id": "9f675c52f647787b",
         "type": "tabs",
         "children": [
           {
-            "id": "c9399b4a652ba0f9",
+            "id": "9996f7c38a6b00c6",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -41,7 +41,9 @@
               "type": "file-explorer",
               "state": {
                 "sortOrder": "alphabetical",
-                "autoReveal": false
+                "autoReveal": false,
+                "showSearch": false,
+                "searchQuery": ""
               },
               "icon": "lucide-folder-closed",
               "title": "Explorador de archivos"
@@ -196,9 +198,22 @@
       "obsidian-excalidraw-plugin:Nuevo Bosquejo": false
     }
   },
-  "active": "c9399b4a652ba0f9",
+  "active": "9996f7c38a6b00c6",
   "lastOpenFiles": [
+    "HTB/Appointment/Appointment.md",
+    "Obsidian_Guia_Completa.md",
+    "HTB/Appointment/Teoria_SQLi_LoginBypass.pdf",
+    "Pasted image 20260810213509.png",
+    "Pasted image 20260810213445.png",
+    "Pasted image 20260810213418.png",
+    "Pasted image 20260810212152.png",
+    "HTB/Redeemer/Redeemer.md",
+    "HTB/Dancing/Dancing.md",
+    "HTB/Meow/Meow.md",
+    "Perfil_César_Asesoría.md",
+    "HTB/Redeemer/Sin título.md",
     "!_Antes de COMENZAR-CERRAR Obsidian_!.md",
+    "HTB/Redeemer",
     "_Templates/Technique_Template.md",
     "Untitled Kanban.md",
     "CLAUDE.md",
@@ -209,7 +224,6 @@
     "Sin título.canvas",
     "2026-06-19.md",
     "_Templates/HTB_Template_Maquina.md",
-    "HTB/Dancing/Dancing.md",
     "HTB/Dancing/Img/Dancing.canvas",
     "Pasted image 20260613024625.png",
     "Pasted image 20260613023557.png",
@@ -223,22 +237,14 @@
     "HTB/Dancing",
     "Perfil_César_Asesoría.md.tmp.4308.2056f874bbda",
     "Teoría_Dancing_SMB.pdf",
-    "HTB/Meow/Meow.md",
     "HTB/Fawn/Img",
     "HTB/Fawn",
-    "Perfil_César_Asesoría.md",
-    "Obsidian_Guia_Completa.md",
     "Roadmap_2026.md",
     "Sin título.md",
     "2026-06-07.md",
     "url.md",
     "Metodologia_HTB.md",
-    "HTB/Meow/Img",
-    "HTB/Meow",
     "aa.md",
-    "adsasddasdasdas.md",
-    "Aaaaa.md",
-    "HTB/Aaaa.md",
-    "HTB/Easy.md"
+    "adsasddasdasdas.md"
   ]
 }

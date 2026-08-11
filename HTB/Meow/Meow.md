@@ -100,6 +100,7 @@ cat /root/flag.txt
 - Un solo puerto abierto elimina hipótesis — no enumerar lo que no existe
 
 **Bloqueado:**
+
 | Fase | Causa | Fix |
 |------|-------|-----|
 | Login | Probé `admin` antes que `root` | En Linux: `root` siempre primero |
