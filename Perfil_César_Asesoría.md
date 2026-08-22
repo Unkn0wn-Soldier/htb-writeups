@@ -2,7 +2,7 @@
 
 > [!info] Documento interno de contexto
 > Este archivo es para uso de la asesoría. Resume el perfil, objetivos, contexto y acuerdos de trabajo. Se actualiza cuando el contexto cambia significativamente.
-> Última actualización: 2026-06-11 — Sesión 1 completada. 2 máquinas SP Tier 0 terminadas.
+> Última actualización: 2026-08-13 — 6 máquinas terminadas (Meow, Fawn, Dancing, Redeemer, Appointment, Sequel). Threat Hunting ya cursado y aprobado — ver nota en sección 3.
 
 ---
 
@@ -32,9 +32,11 @@ Formación técnica autodidacta en Red Team / Pentesting con doble propósito:
 
 | Ramo | Conexión con Red Team |
 |------|-----------------------|
-| **Threat Hunting** | ⭐ Alta — entender qué detecta el Blue Team hace mejores atacantes. OPSEC y evasión se nutren de esto. |
 | **Taller de implementación de herramientas** | Media — depende del contenido específico del semestre |
 | **Proyecto de Ingeniería** | Trabajo separado — carpeta distinta del vault |
+
+> [!note] Threat Hunting — ya cursado y aprobado
+> Ya no es ramo en curso. El conocimiento se aplica directamente en la sección "¿Qué vería un Threat Hunter?" de cada writeup Tier 1+, no como materia que está cursando en paralelo.
 
 > [!warning] Nota clave
 > La enseñanza práctica en la universidad fue débil. César tiene vocabulario técnico de materias como Red Team ofensivo, Blue Team, Análisis de malware y Pentesting móvil/web — pero sin habilidad práctica real. **No asumir competencia técnica basada en los ramos cursados.**
@@ -89,8 +91,7 @@ Crear un negocio propio de servicios de ciberseguridad ofensiva (**Proyecto Cón
 
 | Riesgo | Descripción | Mitigación |
 |--------|-------------|------------|
-| **Timeline ajustado** | 6-10h/semana × 26 semanas = 156-260h totales. CPTS requiere 28 módulos + 40 máquinas. Es factible pero sin margen de error. | Revisión de ritmo cada 2 semanas. Ajustar roadmap si hay desvíos. |
-| **Threat Hunting desaprovechado** | No conecta aún su ramo de Threat Hunting con OPSEC y evasión ofensiva | Integrar contenido del ramo en los writeups de HTB — qué detectaría un cazador en cada ataque |
+| **Timeline ajustado** | 6-10h/semana. CPTS requiere 28 módulos + 40 máquinas. Con 48 días sin actividad registrada entre jun-ago 2026, el margen de error ya se consumió — ver alerta de ritmo en `00_Index.md`. | Revisión de ritmo cada 2 semanas. Ajustar roadmap si hay desvíos. |
 | **Visibilidad pública = 0** | 0 writeups en GitHub. Para el mercado laboral y para Cóndor, la marca personal es tan importante como la cert. | Empezar a publicar writeups de Starting Point cuando se retiren las máquinas |
 | **Scripting gap** | Sin bash/python propio aún. No bloquea CPTS, pero sí limita capacidades avanzadas de Red Team (custom tooling, automatización) | Añadir ejercicios de scripting cortos ligados a máquinas que lo requieran |
 | **Proyecto de titulación** | Carga adicional real que puede reducir las horas disponibles en trimestres clave | Monitorear carga universitaria — ajustar roadmap en octubre-noviembre si es necesario |
@@ -115,10 +116,10 @@ Crear un negocio propio de servicios de ciberseguridad ofensiva (**Proyecto Cón
 
 ## 10. Progreso y siguiente acción
 
-**Completadas:** Meow ✅ · Fawn ✅ (2/24 SP Tier 0 · 2/50 total)
+**Completadas:** Meow ✅ · Fawn ✅ · Dancing ✅ · Redeemer ✅ (Tier 0 completo, 4/4 free) · Appointment ✅ · Sequel ✅ (2/9 Tier 1) — 6/50 total.
 
 **Siguiente:**
-1. Leer PDF teoría SMB (Dancing) → hacer Dancing → traer notas brutas
-2. Completar Tier 0 antes de fin de junio (6 máquinas restantes)
-3. Primer commit en GitHub pendiente — hacerlo al terminar Tier 0
-4. Pendiente definir: sinergia Proyecto de Ingeniería con el vault
+1. Hacer Crocodile (Tier 1, #11) — pedir PDF teoría FTP+web antes de empezar
+2. Primer commit en GitHub pendiente — sigue sin publicarse, ya hay 6 writeups listos para cuando HTB retire las máquinas
+3. Pendiente definir: sinergia Proyecto de Ingeniería con el vault
+4. Threat Hunting ya cursado — no volver a tratarlo como ramo en curso en futuras sesiones

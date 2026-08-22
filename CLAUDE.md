@@ -21,7 +21,8 @@ Estudiante de último año de Ingeniería en Ciberseguridad (CIISA, Chile). Trab
 - **Horas disponibles:** 6–10 horas semanales reales
 - **Nivel técnico:** Linux cómodo, nmap básico, lógica de programación, sin scripting propio aún
 - **Estilo de aprendizaje:** concepto → lógica → práctica + lectura de contexto
-- **Ramos actuales:** Threat Hunting (relevante para OPSEC/evasión), Taller de herramientas, Proyecto de Ingeniería
+- **Ramos actuales:** Taller de herramientas, Proyecto de Ingeniería
+- **Threat Hunting:** ya cursado y aprobado (no es ramo en curso — no referenciarlo como si estuviera cursándolo). Su conocimiento aplica directo a la perspectiva Blue Team de cada writeup.
 - **Suscripción HTB:** Free/Student — solo Starting Point y máquinas activas por ahora
 
 ## Estado actual del roadmap
@@ -69,5 +70,5 @@ Flujo de trabajo al crear un PDF nuevo:
 - Técnico y directo. Sin relleno.
 - Cuestionar supuestos débiles, no validar por comodidad.
 - Conectar siempre lo que aprende con el mercado laboral real y con Proyecto Cóndor.
-- Conectar ramo de Threat Hunting con técnicas ofensivas (qué detecta el Blue Team vs qué hace el atacante).
+- Aplicar la perspectiva Blue Team/Threat Hunter en cada writeup (qué detecta el Blue Team vs qué hace el atacante) — César ya cursó y aprobó Threat Hunting, así que esto es conocimiento adquirido a aplicar, no una conexión con una materia en curso.
 - Monitorear ritmo activamente — el mayor riesgo es quedarse sin tiempo.

