@@ -9,15 +9,15 @@
 
 | Métrica                       | Progreso                                      |
 | ------------------------------ | --------------------------------------------- |
-| Máquinas HTB completadas      | 7 / 50                                        |
-| Fase 0 — Starting Point       | 7 / 24 (Tier 0: 4/8 free completo · Tier 1: 3/9) |
+| Máquinas HTB completadas      | 10 / 50                                       |
+| Fase 0 — Starting Point       | 10 / 24 (Tier 0: 4/8 free completo · Tier 1: 5/9 · Tier 2: 1/7) |
 | Writeups publicados en GitHub | 0                                              |
-| Técnicas documentadas         | 7 — ver [[#Base de Técnicas]]                 |
+| Técnicas documentadas         | 11 — ver [[#Base de Técnicas]]                |
 | Módulos CPTS completados      | En progreso                                   |
 | Certificaciones obtenidas     | —                                              |
 
 > [!danger] Alerta de ritmo
-> Dancing se cerró el 2026-06-13. Appointment se retomó el 2026-08-10 — **48 días sin avance registrado** en medio. Desde la retomada (10-13 ago): 3 máquinas en 4 días, ritmo sano. Sigue por detrás del roadmap (24 máquinas de Fase 0 pedidas para julio, van 7), pero la tendencia de esta semana es la que importa — sostenerla es lo que decide si Fase 0 se cierra a tiempo.
+> Dancing se cerró el 2026-06-13. Appointment se retomó el 2026-08-10 — **48 días sin avance registrado** en medio. Desde la retomada (10-22 ago): 4 máquinas en 12 días, ritmo sostenido pero con una pausa notoria en Responder (iniciada 13-ago, cerrada 22-ago — 9 días, más lento que Appointment/Sequel/Crocodile por el atasco real con la IP de tun0 vs víctima). Sigue por detrás del roadmap (24 máquinas de Fase 0 pedidas para julio, van 8), la tendencia general es sana pero vigilar que Responder no marque un patrón de máquinas Windows/AD tomando más tiempo que las de Linux.
 
 ---
 
@@ -59,8 +59,8 @@
 | 9   | Appointment | ✅ Terminada | [[HTB/Appointment/Appointment]] | [[Técnicas/SQL-Injection]] |
 | 10  | Sequel      | ✅ Terminada | [[HTB/Sequel/Sequel]]          | [[Técnicas/MySQL-Unauthenticated]] |
 | 11  | Crocodile   | ✅ Terminada | [[HTB/Crocodile/Crocodile]]   | [[Técnicas/Credential-Reuse]] |
-| 12  | Responder   | 🟡 En estudio | [[HTB/Responder/Responder]]  | LLMNR/NBT-NS poisoning · NTLMv2 |
-| 13  | Three       | ⬜ Pendiente | —                               | — |
+| 12  | Responder   | ✅ Terminada | [[HTB/Responder/Responder]]  | [[Técnicas/Forced-Authentication-SMB]] |
+| 13  | Three       | ✅ Terminada | [[HTB/Three/Three]]           | [[Técnicas/AWS-S3-Misconfiguration]] |
 | 14  | Ignition    | ⬜ Pendiente | —                               | — |
 | 15  | Bike        | ⬜ Pendiente | —                               | — |
 | 16  | Pennyworth  | ⬜ Pendiente | —                               | — |
@@ -72,7 +72,7 @@
 | --- | --------- | ------------ | ------- |
 | 18  | Archetype | ⬜ Pendiente | —       |
 | 19  | Oopsie    | ⬜ Pendiente | —       |
-| 20  | Vaccine   | ⬜ Pendiente | —       |
+| 20  | Vaccine   | ✅ Terminada | [[HTB/Vaccine/Vaccine]] |
 | 21  | Unified   | ⬜ Pendiente | —       |
 | 22  | Included  | ⬜ Pendiente | —       |
 | 23  | Markup    | ⬜ Pendiente | —       |
@@ -92,7 +92,11 @@ Cada técnica documentada enlaza de vuelta a todas las máquinas donde se usó �
 | [[Técnicas/SQL-Injection]] | Initial Access (T1190) | Appointment |
 | [[Técnicas/MySQL-Unauthenticated]] | Initial Access (T1190) | Sequel |
 | [[Técnicas/Credential-Reuse]] | Initial Access (T1078) | Crocodile |
-| [[Técnicas/LLMNR-NBTNS-Poisoning]] | Credential Access (T1557.001) | Responder |
+| [[Técnicas/LLMNR-NBTNS-Poisoning]] | Credential Access (T1557.001) | (pendiente — teoría estudiada, sin máquina resuelta aún) |
+| [[Técnicas/Forced-Authentication-SMB]] | Credential Access (T1187) | Responder |
+| [[Técnicas/AWS-S3-Misconfiguration]] | Initial Access (T1190) | Three |
+| [[Técnicas/SQLi-to-RCE-sqlmap]] | Initial Access / Execution (T1190) | Vaccine |
+| [[Técnicas/GTFOBins-Sudo-Abuse]] | Privilege Escalation (T1548.003) | Vaccine |
 
 ---
 
@@ -128,3 +132,6 @@ LIMIT 20
 | Jun W4  | 1 (Redeemer)      | 1        | Redis sin auth · `INFO keyspace` antes de `KEYS *` |
 | Jul     | 0                 | 0        | **Sin actividad registrada — 6 semanas** |
 | Ago W2  | 3 (Appointment, Sequel, Crocodile) | 3 | SQLi login bypass · MySQL sin auth (`--skip-ssl`) · credential reuse cross-service (FTP → panel web) |
+| Ago W3  | 1 (Responder) | 1 | LFI → Forced Authentication SMB (T1187, no T1557.001) · NetNTLMv2 + John · IP de payload = tun0 propia, no la víctima |
+| Sep W1  | 1 (Three) | 1 | LocalStack expuesto sin auth (no S3/AWS real) · bucket = nombre del dominio · webshell PHP vía `aws s3 cp` · fingerprint por headers (`x-localstack-target`) antes de asumir el software |
+| Sep W2  | 1 (Vaccine) | 1 | Primera cadena de 4 eslabones (no vector único) · `sqlmap --os-shell` depende de privilegios DB (superusuario Postgres) · orden estricto en estabilización TTY (`pty.spawn` ANTES de Ctrl+Z) · privesc vía GTFOBins (sudo sobre `vi`) |

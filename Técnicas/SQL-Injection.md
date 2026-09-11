@@ -74,7 +74,7 @@ curl -s -X POST http://<IP>/login.php -d "username=admin'#&password=x" -L
 | ----------- | ------- | ------------ |
 | curl | Pruebas manuales rápidas de payloads | `curl -X POST <url> -d "campo=payload"` |
 | Burp Suite | Interceptar/iterar requests sin CLI | Proxy → Repeater |
-| sqlmap | Automatización de detección/explotación SQLi | `sqlmap -u <url> --data="user=x&pass=y"` (siguiente nivel, ver Vaccine) |
+| sqlmap | Automatización de detección/explotación SQLi | `sqlmap -u <url> --data="user=x&pass=y"` (siguiente nivel: RCE, ver [[Técnicas/SQLi-to-RCE-sqlmap]]) |
 
 ---
 

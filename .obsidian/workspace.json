@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "9f675c52f647787b",
+        "id": "01d5d4fc65b893eb",
         "type": "tabs",
         "children": [
           {
-            "id": "9996f7c38a6b00c6",
+            "id": "2ceb5f3aff2e944d",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -198,8 +198,18 @@
       "obsidian-excalidraw-plugin:Nuevo Bosquejo": false
     }
   },
-  "active": "9996f7c38a6b00c6",
+  "active": "2ceb5f3aff2e944d",
   "lastOpenFiles": [
+    "CLAUDE.md",
+    "Metodologia_HTB.md",
+    "HTB/Vaccine/Vaccine.md",
+    "HTB/Three/Three.md",
+    "Roadmap_2026.md",
+    "00_Index.md",
+    "HTB/Three/desktop.ini",
+    "Excalidraw/Drawing 2026-06-19 23.08.02.excalidraw.md",
+    "HTB/Three/Teoria_S3_Three.pdf",
+    "!_Antes de COMENZAR-CERRAR Obsidian_!.md",
     "HTB/Responder/Responder.md",
     "HTB/Appointment/Appointment.md",
     "Técnicas/Credential-Reuse.md",
@@ -213,15 +223,11 @@
     "HTB/Crocodile/Crocodile.md",
     "HTB/Sequel/Sequel.md",
     "Pasted image 20260813210631.png",
-    "00_Index.md",
     "Obsidian_Guia_Completa.md",
-    "Metodologia_HTB.md",
     "Pasted image 20260613022323.png",
     "Pasted image 20260613022341.png",
     "Pasted image 20260613023557.png",
     "HTB/Dancing/Img/Dancing.canvas",
-    "!_Antes de COMENZAR-CERRAR Obsidian_!.md",
-    "Excalidraw/Drawing 2026-06-19 23.08.02.excalidraw.md",
     "entregables/_LEEME.md",
     "CRedTeamLabHTBAppointmentTeoria_SQLi_LoginBypass.pdf",
     "Pasted image 20260810213509.png",
@@ -234,19 +240,13 @@
     "HTB/Redeemer",
     "_Templates/Technique_Template.md",
     "Untitled Kanban.md",
-    "CLAUDE.md",
     "Sin título.base",
-    "Excalidraw",
     "Sin título.canvas",
     "2026-06-19.md",
     "_Templates/HTB_Template_Maquina.md",
     "Pasted image 20260613024625.png",
     "Pasted Image 20260613022402_319.png",
     "HTB/Dancing/Img/Drawing 2026-06-13 02.23.57.excalidraw.md",
-    "HTB/Dancing/Img/Sin título.md",
-    "HTB/Fawn/Fawn.md",
-    "HTB/Dancing/Img",
-    "Roadmap_2026.md",
-    "Sin título.md"
+    "HTB/Dancing/Img/Sin título.md"
   ]
 }

