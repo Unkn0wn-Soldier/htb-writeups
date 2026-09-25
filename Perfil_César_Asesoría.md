@@ -36,7 +36,7 @@ Formación técnica autodidacta en Red Team / Pentesting con doble propósito:
 | **Proyecto de Ingeniería** | Trabajo separado — carpeta distinta del vault |
 
 > [!note] Threat Hunting — ya cursado y aprobado
-> Ya no es ramo en curso. El conocimiento se aplica directamente en la sección "¿Qué vería un Threat Hunter?" de cada writeup Tier 1+, no como materia que está cursando en paralelo.
+> Ya no es ramo en curso. Es conocimiento adquirido. Decisión 25-sep-2026: **no se inyecta como sección "Threat Hunter" en los writeups** — el foco del vault es ofensivo (CPTS/OSCP). La detección/remediación mínima vive solo en la sección "Detección & Remediación".
 
 > [!warning] Nota clave
 > La enseñanza práctica en la universidad fue débil. César tiene vocabulario técnico de materias como Red Team ofensivo, Blue Team, Análisis de malware y Pentesting móvil/web — pero sin habilidad práctica real. **No asumir competencia técnica basada en los ramos cursados.**
@@ -106,7 +106,6 @@ Crear un negocio propio de servicios de ciberseguridad ofensiva (**Proyecto Cón
   - Sin párrafos teóricos — eso va en el PDF
   - El asesor corrige errores técnicos del estudiante al pulir el writeup
 - **Template activo:** `_Templates/HTB_Template_Maquina.md` (versión concisa, jun-2026)
-- **Desde Tier 1:** añadir sección "¿Qué vería un Threat Hunter?" en cada writeup
 - **Ritmo de revisión:** cada 2 semanas contra el roadmap
 - **Sin complacencia:** si el ritmo cae, se dice directo
 - **GitHub:** publicar writeups cuando la máquina sea retirada por HTB
@@ -126,4 +125,4 @@ Crear un negocio propio de servicios de ciberseguridad ofensiva (**Proyecto Cón
 1. Continuar Academy Path — Penetration Testing Process → módulos en secuencia
 2. Próximas máquinas Fase 0: Ignition (Tier 1), luego Archetype (Tier 2)
 3. GitHub: 10 writeups listos para publicar cuando HTB retire las máquinas
-4. Threat Hunting ya cursado — perspectiva Blue Team se aplica en writeups, no como ramo activo
+4. Threat Hunting ya cursado — NO se agrega sección Threat Hunter a los writeups (decisión 25-sep-2026); el foco es ofensivo
