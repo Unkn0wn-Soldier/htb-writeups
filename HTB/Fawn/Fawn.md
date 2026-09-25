@@ -116,6 +116,6 @@ cat flag.txt
 
 - Mismo vector (default creds en servicio remoto): `[[HTB/Meow/Meow]]` (Telnet), `[[HTB/Explosion/Explosion]]` (RDP)
 - Siguiente nivel FTP: `[[HTB/Crocodile/Crocodile]]` (FTP + web login)
-- Ver: `[[Técnicas/Default-Credentials]]`
+- Ver: `[[Técnicas/3_Explotación/Default-Credentials]]`
 
 **Referencias:** [HackTricks FTP](https://book.hacktricks.xyz/network-services-pentesting/pentesting-ftp) · [CVE-1999-0497](https://nvd.nist.gov/vuln/detail/CVE-1999-0497) · [IppSec Fawn](https://www.youtube.com/watch?v=CU_tCe3rVr8)

@@ -119,6 +119,6 @@ N/A — acceso a datos sin necesidad de escalación de privilegios en el sistema
 ## 7. Conexiones
 
 - Similar: `[[HTB/Fawn/Fawn]]` (servicio expuesto sin auth — FTP anónimo)
-- Técnica: `[[Técnicas/Redis-Unauthenticated]]`
+- Técnica: `[[Técnicas/3_Explotación/Redis-Unauthenticated]]`
 
 **Referencias:** [HackTricks - Redis](https://book.hacktricks.xyz/network-services-pentesting/6379-pentesting-redis) · [Redis Security Docs](https://redis.io/docs/management/security/)

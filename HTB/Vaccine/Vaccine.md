@@ -174,19 +174,10 @@ cat root.txt
 
 ---
 
-## 7. ¿Qué vería un Threat Hunter?
+## 7. Conexiones
 
-- El acceso FTP anónimo por sí solo no es un IOC fuerte, pero un `RETR` de un archivo con nombre tipo "backup" inmediatamente después del login anónimo sí es un patrón de reconocimiento activo digno de alerta
-- El cracking (zip2john/hashcat) ocurre 100% offline, fuera de la red monitoreada — la única ventana de detección real de ese eslabón es la descarga inicial del ZIP, no el crackeo en sí
-- sqlmap deja una firma de tráfico muy reconocible por volumen y patrón de payloads en segundos — si no hay WAF/IDS con reglas SQLi activas, esto pasa completamente desapercibido a pesar de ser ruidoso
-- La reverse shell hacia un puerto no estándar debería haber sido bloqueada por egress filtering en el servidor web — su ausencia es en sí misma un hallazgo de arquitectura, no solo un paso de la intrusión
-
----
-
-## 8. Conexiones
-
-- Técnica: `[[Técnicas/SQLi-to-RCE-sqlmap]]`
-- Técnica: `[[Técnicas/GTFOBins-Sudo-Abuse]]`
-- Relacionada (SQLi distinta): `[[Técnicas/SQL-Injection]]` — ahí fue bypass de login, acá fue RCE post-auth
+- Técnica: `[[Técnicas/3_Explotación/SQLi-to-RCE-sqlmap]]`
+- Técnica: `[[Técnicas/4_PrivEsc/GTFOBins-Sudo-Abuse]]`
+- Relacionada (SQLi distinta): `[[Técnicas/3_Explotación/SQL-Injection]]` — ahí fue bypass de login, acá fue RCE post-auth
 
 **Referencias:** [Teoria_Vaccine.pdf](Teoria_Vaccine.pdf) · [GTFOBins - vi](https://gtfobins.github.io/gtfobins/vi/#sudo)

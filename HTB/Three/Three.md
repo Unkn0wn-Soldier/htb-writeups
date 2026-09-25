@@ -141,14 +141,7 @@ N/A esperado — Tier 1 apunta a foothold, no post-explotación completa. Confir
 
 ---
 
-## 7. ¿Qué vería un Threat Hunter?
-
-- El header `x-localstack-target` en tráfico saliente es una señal barata: revela infraestructura de desarrollo expuesta a la red, detectable antes de llegar a la capa de autenticación.
-- LocalStack no habilita logging de acceso a buckets por defecto, hay que activarlo explícitamente. Sin eso, un `PutObject` desde fuera del rango de IPs de CI/CD es la única pista económica que queda.
-
----
-
-## 8. Conexiones
+## 7. Conexiones
 
 - Similar: `[[HTB/Appointment/Appointment]]`, `[[HTB/Sequel/Sequel]]` (explotación de aplicación pública, distinta superficie: SQLi/MySQL vs cloud storage)
 - Técnica: `[[Técnicas/AWS-S3-Misconfiguration]]`

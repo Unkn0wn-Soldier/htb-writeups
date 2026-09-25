@@ -142,20 +142,12 @@ N/A — el objetivo de Tier 1 es obtener la contraseña en texto plano vía crac
 
 ---
 
-## 7. ¿Qué vería un Threat Hunter?
-
-- Un SIEM con reglas de NTLM correlacionaría la autenticación capturada: usuario `Administrator` autenticándose contra un `NetBIOS/servername` (`RESPONDER`) que no corresponde a ningún DC/recurso inventariado en la red — señal de autenticación forzada, no de tráfico legítimo.
-- El log de Apache (`page=//IP/whatever`) es la evidencia más temprana y barata de detectar: cualquier valor de `page` que no sea uno de los 3 idiomas esperados debería generar alerta antes de que el ataque llegue a la fase SMB.
-- Sin monitoreo de SMB saliente (regla de firewall/IDS para 445 hacia fuera de la red), este ataque es completamente silencioso desde la perspectiva de red — la única superficie de detección real está en los logs de la aplicación web, no en el segmento de red.
-
----
-
-## 8. Conexiones
+## 7. Conexiones
 
 - Similar: `[[HTB/Sequel/Sequel]]` (credencial obtenida por medio indirecto, no exploit clásico)
 - Similar: `[[HTB/Appointment/Appointment]]` (explotación web — LFI vs SQLi, misma familia de vulnerabilidad de aplicación pública)
 - Siguiente nivel: máquinas de Fase 2 (Active Directory) — este es el primer contacto con captura de hash NTLM
-- Técnica: `[[Técnicas/Forced-Authentication-SMB]]`
+- Técnica: `[[Técnicas/5_Active-Directory/Forced-Authentication-SMB]]`
 - Teoría: [`Teoria_LLMNR_Responder`](obsidian://open?vault=RedTeamLab&file=HTB%2FResponder%2FTeoria_LLMNR_Responder.pdf) · [`WriteUp_Oficial_Responder_ES`](obsidian://open?vault=RedTeamLab&file=HTB%2FResponder%2FWriteUp_Oficial_Responder_ES.pdf)
 
 **Referencias:** [HackTricks - LLMNR/NBT-NS Poisoning](https://book.hacktricks.xyz/windows-hardening/ad-information-in-windows/broadcast-llmnr-nbt-ns-mdns-spoofing) · [MITRE T1187 - Forced Authentication](https://attack.mitre.org/techniques/T1187/) · [MITRE T1190 - Exploit Public-Facing Application](https://attack.mitre.org/techniques/T1190/)

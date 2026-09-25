@@ -173,20 +173,11 @@ N/A — acceso directo a datos vía cliente MySQL, sin necesidad de shell en el 
 
 ---
 
-## 7. ¿Qué vería un Threat Hunter?
-
-- Conexión al puerto 3306 desde una IP fuera del rango de hosts de aplicación conocidos — primera señal en cualquier NIDS/firewall con reglas de segmentación.
-- Login `root` exitoso sin intentos fallidos previos en los logs de MySQL (si `general_log` está habilitado) — indica credencial vacía, no fuerza bruta ni bypass.
-- Downgrade de conexión forzado con `--skip-ssl`: en un entorno con inspección de tráfico, una conexión MySQL en texto plano hacia un host que normalmente exige TLS es anómala y debería generar alerta — expone en claro toda la sesión, incluidas las queries y sus resultados.
-- Sin logging de origen ni segmentación de red, todo lo anterior es invisible: el hallazgo más fuerte para un Threat Hunter en este escenario es de red (IP/puerto), no de aplicación.
-
----
-
-## 8. Conexiones
+## 7. Conexiones
 
 - Similar: `[[HTB/Redeemer/Redeemer]]` (servicio de BD sin autenticación — mismo patrón, distinto motor)
 - Siguiente nivel: `[[HTB/Vaccine/Vaccine]]` (MySQL + SQLi + sqlmap)
-- Técnica: `[[Técnicas/MySQL-Unauthenticated]]`
+- Técnica: `[[Técnicas/3_Explotación/MySQL-Unauthenticated]]`
 - Teoría: [`Teoria_MySQL_SinAuth`](obsidian://open?vault=RedTeamLab&file=HTB%2FSequel%2FTeoria_MySQL_SinAuth.pdf)
 
 **Referencias:** [HackTricks - MySQL](https://book.hacktricks.xyz/network-services-pentesting/pentesting-mysql) · [MySQL Security Docs](https://dev.mysql.com/doc/refman/8.0/en/security.html)

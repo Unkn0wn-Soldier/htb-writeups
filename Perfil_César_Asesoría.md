@@ -2,15 +2,15 @@
 
 > [!info] Documento interno de contexto
 > Este archivo es para uso de la asesoría. Resume el perfil, objetivos, contexto y acuerdos de trabajo. Se actualiza cuando el contexto cambia significativamente.
-> Última actualización: 2026-08-13 — 6 máquinas terminadas (Meow, Fawn, Dancing, Redeemer, Appointment, Sequel). Threat Hunting ya cursado y aprobado — ver nota en sección 3.
+> Última actualización: 2026-09-17 — 10 máquinas terminadas. Oopsie descartada (12-sep-2026). Academy Path CPTS inscrito formalmente. Roadmap recalibrado: CPTS abril-septiembre 2027, OSCP+ 2028. Threat Hunting ya cursado y aprobado — ver nota en sección 3.
 
 ---
 
 ## 1. Objetivo del proceso
 
 Formación técnica autodidacta en Red Team / Pentesting con doble propósito:
-- **Corto plazo:** CPTS (HTB) antes de diciembre 2026
-- **Mediano plazo:** OSCP+ en 2027, primer empleo en pentesting/Red Team
+- **Corto plazo:** CPTS (HTB) — ventana recalibrada abril-septiembre 2027 (ver [[Roadmap_2026]])
+- **Mediano plazo:** OSCP+ en 2028, primer empleo en pentesting/Red Team
 - **Largo plazo:** Red Team Senior antes de los 30 + construcción de negocio propio de servicios ofensivos (Proyecto Cóndor)
 
 ---
@@ -91,7 +91,7 @@ Crear un negocio propio de servicios de ciberseguridad ofensiva (**Proyecto Cón
 
 | Riesgo | Descripción | Mitigación |
 |--------|-------------|------------|
-| **Timeline ajustado** | 6-10h/semana. CPTS requiere 28 módulos + 40 máquinas. Con 48 días sin actividad registrada entre jun-ago 2026, el margen de error ya se consumió — ver alerta de ritmo en `00_Index.md`. | Revisión de ritmo cada 2 semanas. Ajustar roadmap si hay desvíos. |
+| **Timeline recalibrado** | CPTS movido a abr-sep 2027 (matemáticamente imposible antes de dic-2026 con 1-2h/día). La meta es sostenible si se mantienen ~10h/semana. Ya hubo 48 días sin actividad en jul-2026 — riesgo real de repetición. | Revisión de ritmo cada 2 semanas contra Roadmap_2026.md. |
 | **Visibilidad pública = 0** | 0 writeups en GitHub. Para el mercado laboral y para Cóndor, la marca personal es tan importante como la cert. | Empezar a publicar writeups de Starting Point cuando se retiren las máquinas |
 | **Scripting gap** | Sin bash/python propio aún. No bloquea CPTS, pero sí limita capacidades avanzadas de Red Team (custom tooling, automatización) | Añadir ejercicios de scripting cortos ligados a máquinas que lo requieran |
 | **Proyecto de titulación** | Carga adicional real que puede reducir las horas disponibles en trimestres clave | Monitorear carga universitaria — ajustar roadmap en octubre-noviembre si es necesario |
@@ -116,10 +116,14 @@ Crear un negocio propio de servicios de ciberseguridad ofensiva (**Proyecto Cón
 
 ## 10. Progreso y siguiente acción
 
-**Completadas:** Meow ✅ · Fawn ✅ · Dancing ✅ · Redeemer ✅ (Tier 0 completo, 4/4 free) · Appointment ✅ · Sequel ✅ (2/9 Tier 1) — 6/50 total.
+**Completadas (10/49):** Meow ✅ · Fawn ✅ · Dancing ✅ · Redeemer ✅ (Tier 0: 4/4 free) · Appointment ✅ · Sequel ✅ · Crocodile ✅ · Responder ✅ · Three ✅ (Tier 1: 5/9) · Vaccine ✅ (Tier 2: 1/6).
+
+**Descartada:** Oopsie ❌ (12-sep-2026) — se vio el writeup oficial antes de intentarla, cancela el aprendizaje.
+
+**Estado Academy Path:** Inscrito 12-sep-2026 en Penetration Tester Job Role Path (28 módulos, ~354h). En curso: Penetration Testing Process (módulo 1, 46% completado al 17-sep-2026).
 
 **Siguiente:**
-1. Hacer Crocodile (Tier 1, #11) — pedir PDF teoría FTP+web antes de empezar
-2. Primer commit en GitHub pendiente — sigue sin publicarse, ya hay 6 writeups listos para cuando HTB retire las máquinas
-3. Pendiente definir: sinergia Proyecto de Ingeniería con el vault
-4. Threat Hunting ya cursado — no volver a tratarlo como ramo en curso en futuras sesiones
+1. Continuar Academy Path — Penetration Testing Process → módulos en secuencia
+2. Próximas máquinas Fase 0: Ignition (Tier 1), luego Archetype (Tier 2)
+3. GitHub: 10 writeups listos para publicar cuando HTB retire las máquinas
+4. Threat Hunting ya cursado — perspectiva Blue Team se aplica en writeups, no como ramo activo

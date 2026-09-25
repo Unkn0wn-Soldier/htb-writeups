@@ -110,6 +110,6 @@ cat /root/flag.txt
 ## 6. Conexiones
 
 - Mismo vector (default creds): `[[HTB/Fawn/Fawn]]` (FTP), `[[HTB/Explosion/Explosion]]` (RDP)
-- Técnica: `[[Técnicas/Default-Credentials]]`
+- Técnica: `[[Técnicas/3_Explotación/Default-Credentials]]`
 
 **Referencias:** [HackTricks Telnet](https://book.hacktricks.xyz/network-services-pentesting/pentesting-telnet) · [RFC 854](https://datatracker.ietf.org/doc/html/rfc854) · [MITRE T1078.001](https://attack.mitre.org/techniques/T1078/001/)

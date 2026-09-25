@@ -119,18 +119,10 @@ N/A — acceso directo vía panel web con credenciales reutilizadas.
 
 ---
 
-## 7. ¿Qué vería un Threat Hunter?
-
-- Login `anonymous` en logs FTP desde una IP externa, seguido de descarga de archivos con nombres que sugieren credenciales (`*.userlist`, `*.passwd`) — patrón reconocible incluso sin inspeccionar contenido.
-- Request a `/login.php` con éxito inmediatamente después de la sesión FTP, misma IP origen — correlación temporal entre dos servicios distintos es la señal más fuerte, más que cualquier evento aislado.
-- Sin correlación de logs entre servicios (FTP y web tratados como fuentes separadas), este ataque es prácticamente invisible — es el mismo punto ciego que en Sequel: el vector de red importa más que la lógica de aplicación.
-
----
-
-## 8. Conexiones
+## 7. Conexiones
 
 - Similar: `[[HTB/Fawn/Fawn]]` (FTP anónimo — mismo punto de entrada, sin segundo paso de credential reuse)
-- Técnica: `[[Técnicas/Credential-Reuse]]`
+- Técnica: `[[Técnicas/3_Explotación/Credential-Reuse]]`
 - Teoría: [`Guia_Basica_Crocodile`](obsidian://open?vault=RedTeamLab&file=HTB%2FCrocodile%2FGuia_Basica_Crocodile.pdf)
 
 **Referencias:** [HackTricks - FTP](https://book.hacktricks.xyz/network-services-pentesting/pentesting-ftp) · [MITRE T1078](https://attack.mitre.org/techniques/T1078/)

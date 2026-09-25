@@ -10,8 +10,8 @@ Estudiante de último año de Ingeniería en Ciberseguridad (CIISA, Chile). Trab
 
 ## Objetivos (en orden)
 
-1. **CPTS (HTB)** antes de diciembre 2026
-2. **OSCP+** en 2027
+1. **CPTS (HTB)** — ventana recalibrada abril-septiembre 2027 (recálculo 12-sep-2026, ver `Roadmap_2026.md`)
+2. **OSCP+** en 2028
 3. **Primer empleo en Red Team / Pentesting** al titularse (~2027)
 4. **Red Team Senior** antes de los 30
 5. **Proyecto Cóndor** — negocio propio de servicios ofensivos para el mercado chileno/latinoamericano
@@ -22,8 +22,10 @@ Estudiante de último año de Ingeniería en Ciberseguridad (CIISA, Chile). Trab
 - **Nivel técnico:** Linux cómodo, nmap básico, lógica de programación, sin scripting propio aún
 - **Estilo de aprendizaje:** concepto → lógica → práctica + lectura de contexto
 - **Ramos actuales:** Taller de herramientas, Proyecto de Ingeniería
-- **Threat Hunting:** ya cursado y aprobado (no es ramo en curso — no referenciarlo como si estuviera cursándolo). Su conocimiento aplica directo a la perspectiva Blue Team de cada writeup.
-- **Suscripción HTB:** Free/Student — solo Starting Point y máquinas activas por ahora
+- **Threat Hunting:** ya cursado y aprobado (no es ramo en curso — no referenciarlo como si estuviera cursándolo). Es conocimiento adquirido; **no se inyecta como sección en los writeups**. El foco del vault es ofensivo (CPTS/OSCP); la detección/remediación mínima vive solo en la sección "Detección & Remediación" del reporte, no como bloque Threat Hunter aparte.
+- **Suscripción HTB Labs (máquinas):** Free — solo Starting Point y máquinas activas
+- **Suscripción HTB Academy (módulos):** Student, $8/mes, access-based, pago automático activo. Desbloquea Tier I+II completo, incluye el path Penetration Tester entero. Riesgo real: es mensual, no anual — si el auto-pago falla (tarjeta vencida/rechazada) se pierde acceso a módulos incompletos (los completados quedan de por vida, sin las soluciones paso a paso). César decidió mantener el auto-pago activo durante y después del CPTS — vigilar que la tarjeta no expire, no asumir que "automático" = sin riesgo de corte.
+- **Foco actual (21-sep-2026):** dedicación completa al Academy Path Penetration Tester (~3% completado), antes que máquinas sueltas de Starting Point
 
 ## Estado actual del roadmap
 
@@ -37,7 +39,6 @@ Roadmap completo en `Roadmap_2026.md`.
   - Formato: reconocimiento (tabla) → explotación (comandos exactos) → MITRE (tabla) → detección/remediation (bullets) → lecciones (máx. 3)
   - Sin párrafos largos ni contexto teórico — eso va en el PDF
   - Corregir errores técnicos del estudiante al pulir el writeup
-- Desde Tier 1: añadir sección "¿Qué vería un Threat Hunter?" en cada writeup
 - Revisión de ritmo cada 2 semanas contra el roadmap
 - Sin complacencia: si el ritmo cae, se dice directo
 - GitHub: publicar writeups cuando la máquina sea retirada por HTB
@@ -70,5 +71,4 @@ Flujo de trabajo al crear un PDF nuevo:
 - Técnico y directo. Sin relleno.
 - Cuestionar supuestos débiles, no validar por comodidad.
 - Conectar siempre lo que aprende con el mercado laboral real y con Proyecto Cóndor.
-- Aplicar la perspectiva Blue Team/Threat Hunter en cada writeup (qué detecta el Blue Team vs qué hace el atacante) — César ya cursó y aprobó Threat Hunting, así que esto es conocimiento adquirido a aplicar, no una conexión con una materia en curso.
 - Monitorear ritmo activamente — el mayor riesgo es quedarse sin tiempo.

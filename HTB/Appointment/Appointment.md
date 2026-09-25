@@ -119,18 +119,10 @@ N/A — login bypass directo, flag en dashboard post-login.
 
 ---
 
-## 7. ¿Qué vería un Threat Hunter?
-
-- Payload con comillas simples, `--` o `#` en el body de un POST a `/index.php` — patrón SQLi clásico detectable por firma en cualquier WAF/IDS con reglas OWASP CRS.
-- Bypass exitoso sin secuencia previa de intentos fallidos: un login que autentica al primer intento con un payload no-credencial es indistinguible de un usuario legítimo solo si no se inspecciona el contenido del campo `username` — de ahí que la detección dependa 100% de logging a nivel de aplicación, no de contadores de fallos.
-- Ausencia de rate limiting: nada impidió repetir la prueba de payloads sin cooldown — en un entorno monitoreado, ráfagas de POST al mismo endpoint con distintos payloads en segundos son una señal de reconocimiento activo.
-
----
-
-## 8. Conexiones
+## 7. Conexiones
 
 - Similar: `[[HTB/Vaccine/Vaccine]]` (SQLi + sqlmap — siguiente nivel)
-- Técnica: `[[Técnicas/SQL-Injection]]`
+- Técnica: `[[Técnicas/3_Explotación/SQL-Injection]]`
 - Teoría: [`Teoria_SQLi_LoginBypass`](obsidian://open?vault=RedTeamLab&file=HTB%2FAppointment%2FTeoria_SQLi_LoginBypass.pdf)
 
 **Referencias:** [HackTricks - SQLi](https://book.hacktricks.xyz/pentesting-web/sql-injection) · [OWASP SQLi](https://owasp.org/www-community/attacks/SQL_Injection) · [PortSwigger SQLi](https://portswigger.net/web-security/sql-injection)
