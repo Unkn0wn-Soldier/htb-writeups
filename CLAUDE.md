@@ -34,10 +34,10 @@ Roadmap completo en `Roadmap_2026.md`.
 
 ## Acuerdos de trabajo (no cambiar sin discutirlos)
 
-- PDF de teoría antes de cada máquina nueva: **detallado y explicativo** (guardado en el vault)
+- **Material de estudio: conciso, sin relleno** (decisión 25-sep-2026). Calidad pero directo — pensado para repasar rápido, no para leer planas. Ya NO se generan PDFs de teoría largos por máquina; la teoría necesaria va condensada en el writeup y en la nota de técnica correspondiente.
 - Writeup por máquina: **conciso y preciso** — solo lo necesario para resolver o revisar rápido en examen
   - Formato: reconocimiento (tabla) → explotación (comandos exactos) → MITRE (tabla) → detección/remediation (bullets) → lecciones (máx. 3)
-  - Sin párrafos largos ni contexto teórico — eso va en el PDF
+  - Sin párrafos largos ni relleno — el "por qué" condensado vive en la nota de técnica (`Técnicas/<fase>/`), no en un PDF aparte
   - Corregir errores técnicos del estudiante al pulir el writeup
 - Revisión de ritmo cada 2 semanas contra el roadmap
 - Sin complacencia: si el ritmo cae, se dice directo
@@ -56,7 +56,9 @@ Roadmap completo en `Roadmap_2026.md`.
 
 ## Estándar de generación de PDFs
 
-**SIEMPRE usar `_Templates/pdf_base.py` como base al generar PDFs de teoría.**
+> Los PDFs de teoría por máquina quedaron **deprecados** (25-sep-2026) — ver Acuerdos. Esta sección aplica solo si en algún caso puntual se necesita un PDF (ej. un entregable para imprimir); no es el flujo por defecto.
+
+**Si se genera un PDF, SIEMPRE usar `_Templates/pdf_base.py` como base.**
 
 Regla crítica de legibilidad: los bloques de código van con **texto oscuro (`#1A1A1A`) sobre fondo gris claro (`#F0F0F0`)** — nunca texto claro sobre fondo oscuro. El PDF debe ser legible en pantalla, impreso en blanco/negro, y exportado a papel sin perder información.
 
