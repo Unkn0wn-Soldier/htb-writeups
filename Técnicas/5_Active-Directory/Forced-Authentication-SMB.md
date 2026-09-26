@@ -65,7 +65,7 @@ john -w=/usr/share/wordlists/rockyou.txt hash.txt
 > [!tip] Variaciones comunes
 > - Si SMB Signing no está forzado, el hash puede reenviarse (relay) con `ntlmrelayx.py` en vez de crackearse
 > - PetitPotam y variantes abusan de RPCs de Windows (EFSRPC, spoolsample) para lograr lo mismo sin necesitar un LFI web
-> - Diferencia clave con LLMNR/NBT-NS Poisoning (`[[Técnicas/5_Active-Directory/LLMNR-NBTNS-Poisoning]]`): ahí el atacante espera pasivamente un broadcast fallido; aquí dispara la autenticación activamente especificando el destino exacto
+> - Diferencia clave con LLMNR/NBT-NS Poisoning ([[Técnicas/5_Active-Directory/LLMNR-NBTNS-Poisoning]]): ahí el atacante espera pasivamente un broadcast fallido; aquí dispara la autenticación activamente especificando el destino exacto
 
 ---
 
@@ -89,7 +89,7 @@ john -w=/usr/share/wordlists/rockyou.txt hash.txt
 
 ## Dónde la usé
 
-- `[[HTB/Responder/Responder]]` — LFI en `index.php?page=` usado para forzar autenticación SMB; hash de `Administrator` capturado con Responder, crackeado con John (`badminton`)
+- [[HTB/Responder/Responder]] — LFI en `index.php?page=` usado para forzar autenticación SMB; hash de `Administrator` capturado con Responder, crackeado con John (`badminton`)
 
 ---
 

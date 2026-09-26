@@ -102,8 +102,8 @@ sudo -l / find / -perm -4000 / cat /etc/crontab
 
 ## 7. Conexiones
 
-- Similar: `[[HTB/Maquina/Maquina]]`
-- Siguiente nivel: `[[HTB/Maquina/Maquina]]`
-- Técnica: `[[Técnicas/Nombre]]`
+- Similar: [[HTB/<Máquina>/<Máquina>]]
+- Siguiente nivel: [[HTB/<Máquina>/<Máquina>]]
+- Técnica: [[Técnicas/<Fase>/<Nombre>]]
 
 **Referencias:** [HackTricks](url) · [CVE](url) · [IppSec](url)

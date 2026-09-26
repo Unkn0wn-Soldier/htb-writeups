@@ -83,7 +83,7 @@ gobuster dir -u http://<IP>/ -w /usr/share/wordlists/dirb/common.txt
 
 ## Dónde la usé
 
-- `[[HTB/Crocodile/Crocodile]]` — Credenciales extraídas de FTP anónimo (`allowed.userlist` / `allowed.userlist.passwd`), reutilizadas en `/login.php`
+- [[HTB/Crocodile/Crocodile]] — Credenciales extraídas de FTP anónimo (`allowed.userlist` / `allowed.userlist.passwd`), reutilizadas en `/login.php`
 
 ---
 

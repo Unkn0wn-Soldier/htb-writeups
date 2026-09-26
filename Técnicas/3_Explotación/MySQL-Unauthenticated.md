@@ -87,7 +87,7 @@ mysql> SELECT * FROM <tabla>;
 
 ## Dónde la usé
 
-- `[[HTB/Sequel/Sequel]]` — Conexión `root` sin contraseña, enumeración de BD y extracción de flag
+- [[HTB/Sequel/Sequel]] — Conexión `root` sin contraseña, enumeración de BD y extracción de flag
 
 ---
 

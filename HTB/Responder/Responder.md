@@ -144,10 +144,9 @@ N/A — el objetivo de Tier 1 es obtener la contraseña en texto plano vía crac
 
 ## 7. Conexiones
 
-- Similar: `[[HTB/Sequel/Sequel]]` (credencial obtenida por medio indirecto, no exploit clásico)
-- Similar: `[[HTB/Appointment/Appointment]]` (explotación web — LFI vs SQLi, misma familia de vulnerabilidad de aplicación pública)
+- Similar: [[HTB/Sequel/Sequel]] (credencial obtenida por medio indirecto, no exploit clásico)
+- Similar: [[HTB/Appointment/Appointment]] (explotación web — LFI vs SQLi, misma familia de vulnerabilidad de aplicación pública)
 - Siguiente nivel: máquinas de Fase 2 (Active Directory) — este es el primer contacto con captura de hash NTLM
-- Técnica: `[[Técnicas/5_Active-Directory/Forced-Authentication-SMB]]`
-- Teoría: [`Teoria_LLMNR_Responder`](obsidian://open?vault=RedTeamLab&file=HTB%2FResponder%2FTeoria_LLMNR_Responder.pdf) · [`WriteUp_Oficial_Responder_ES`](obsidian://open?vault=RedTeamLab&file=HTB%2FResponder%2FWriteUp_Oficial_Responder_ES.pdf)
+- Técnica: [[Técnicas/5_Active-Directory/Forced-Authentication-SMB]]
 
 **Referencias:** [HackTricks - LLMNR/NBT-NS Poisoning](https://book.hacktricks.xyz/windows-hardening/ad-information-in-windows/broadcast-llmnr-nbt-ns-mdns-spoofing) · [MITRE T1187 - Forced Authentication](https://attack.mitre.org/techniques/T1187/) · [MITRE T1190 - Exploit Public-Facing Application](https://attack.mitre.org/techniques/T1190/)

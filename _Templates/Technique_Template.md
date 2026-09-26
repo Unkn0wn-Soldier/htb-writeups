@@ -72,7 +72,7 @@ comando
 
 ## Dónde la usé
 
-- `[[HTB/NombreMaquina/NombreMaquina]]` — Contexto en que apareció
+- [[HTB/<Máquina>/<Máquina>]] — Contexto en que apareció
 
 ---
 

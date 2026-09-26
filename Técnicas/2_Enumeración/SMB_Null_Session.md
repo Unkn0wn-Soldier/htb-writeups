@@ -88,7 +88,7 @@ smb: \> !cat <archivo>
 
 ## Dónde la usé
 
-- `[[HTB/Dancing/Dancing]]` — Share `WorkShares` accesible sin autenticación, flag en subdirectorio de usuario
+- [[HTB/Dancing/Dancing]] — Share `WorkShares` accesible sin autenticación, flag en subdirectorio de usuario
 
 ---
 

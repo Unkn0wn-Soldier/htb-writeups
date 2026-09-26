@@ -176,8 +176,8 @@ cat root.txt
 
 ## 7. Conexiones
 
-- Técnica: `[[Técnicas/3_Explotación/SQLi-to-RCE-sqlmap]]`
-- Técnica: `[[Técnicas/4_PrivEsc/GTFOBins-Sudo-Abuse]]`
-- Relacionada (SQLi distinta): `[[Técnicas/3_Explotación/SQL-Injection]]` — ahí fue bypass de login, acá fue RCE post-auth
+- Técnica: [[Técnicas/3_Explotación/SQLi-to-RCE-sqlmap]]
+- Técnica: [[Técnicas/4_PrivEsc/GTFOBins-Sudo-Abuse]]
+- Relacionada (SQLi distinta): [[Técnicas/3_Explotación/SQL-Injection]] — ahí fue bypass de login, acá fue RCE post-auth
 
-**Referencias:** [Teoria_Vaccine.pdf](Teoria_Vaccine.pdf) · [GTFOBins - vi](https://gtfobins.github.io/gtfobins/vi/#sudo)
+**Referencias:** [GTFOBins - vi](https://gtfobins.github.io/gtfobins/vi/#sudo)

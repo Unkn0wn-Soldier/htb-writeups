@@ -87,7 +87,7 @@ redis-cli -h <IP>
 
 ## Dónde la usé
 
-- `[[HTB/Redeemer/Redeemer]]` — Acceso sin auth, extracción de flag desde `KEYS *` / `GET`
+- [[HTB/Redeemer/Redeemer]] — Acceso sin auth, extracción de flag desde `KEYS *` / `GET`
 
 ---
 

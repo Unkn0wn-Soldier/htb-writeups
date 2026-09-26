@@ -146,8 +146,8 @@ Tier 0 — acceso directo a la flag vía share público.
 
 ## 7. Conexiones
 
-- Similar: `[[HTB/Meow/Meow]]` — credenciales por defecto en servicio expuesto
-- Siguiente nivel: `[[HTB/Tactics/Tactics]]` — SMB + PsExec (Tier 1)
-- Técnica: `[[Técnicas/2_Enumeración/SMB_Null_Session]]`
+- Similar: [[HTB/Meow/Meow]] — credenciales por defecto en servicio expuesto
+- Siguiente nivel: Tactics (pendiente) — SMB + PsExec (Tier 1)
+- Técnica: [[Técnicas/2_Enumeración/SMB_Null_Session]]
 
 **Referencias:** [HackTricks SMB](https://book.hacktricks.xyz/network-services-pentesting/pentesting-smb) · [MITRE T1021.002](https://attack.mitre.org/techniques/T1021/002/)

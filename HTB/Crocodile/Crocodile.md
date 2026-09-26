@@ -121,8 +121,7 @@ N/A — acceso directo vía panel web con credenciales reutilizadas.
 
 ## 7. Conexiones
 
-- Similar: `[[HTB/Fawn/Fawn]]` (FTP anónimo — mismo punto de entrada, sin segundo paso de credential reuse)
-- Técnica: `[[Técnicas/3_Explotación/Credential-Reuse]]`
-- Teoría: [`Guia_Basica_Crocodile`](obsidian://open?vault=RedTeamLab&file=HTB%2FCrocodile%2FGuia_Basica_Crocodile.pdf)
+- Similar: [[HTB/Fawn/Fawn]] (FTP anónimo — mismo punto de entrada, sin segundo paso de credential reuse)
+- Técnica: [[Técnicas/3_Explotación/Credential-Reuse]]
 
 **Referencias:** [HackTricks - FTP](https://book.hacktricks.xyz/network-services-pentesting/pentesting-ftp) · [MITRE T1078](https://attack.mitre.org/techniques/T1078/)

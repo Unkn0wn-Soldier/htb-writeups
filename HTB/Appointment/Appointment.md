@@ -7,14 +7,14 @@ tags:
   - linux
   - sqli
   - web
-  - en-progreso
+  - Terminada
 ip: 10.129.250.149
 os: Linux
 difficulty: Easy
 status: Terminada
 tiempo: 1h 0m
 fecha_inicio: 2026-08-10
-fecha_completada: —
+fecha_completada: 2026-08-13
 puntos: 0
 mitre_tactics:
   - Initial Access
@@ -27,7 +27,7 @@ mitre_techniques:
 # 🖥️ Appointment — Linux — Easy (Tier 1)
 
 > [!info] Resumen
-> **IP:** `10.129.250.149` | **OS:** Linux | **Tier/Fase:** 2 | **Tiempo:** 0h 0m
+> **IP:** `10.129.250.149` | **OS:** Linux | **Tier/Fase:** 1 | **Tiempo:** 1h 0m
 > Servidor web con formulario de login vulnerable a SQL Injection — bypass sin credenciales válidas.
 
 ---
@@ -121,8 +121,7 @@ N/A — login bypass directo, flag en dashboard post-login.
 
 ## 7. Conexiones
 
-- Similar: `[[HTB/Vaccine/Vaccine]]` (SQLi + sqlmap — siguiente nivel)
-- Técnica: `[[Técnicas/3_Explotación/SQL-Injection]]`
-- Teoría: [`Teoria_SQLi_LoginBypass`](obsidian://open?vault=RedTeamLab&file=HTB%2FAppointment%2FTeoria_SQLi_LoginBypass.pdf)
+- Similar: [[HTB/Vaccine/Vaccine]] (SQLi + sqlmap — siguiente nivel)
+- Técnica: [[Técnicas/3_Explotación/SQL-Injection]]
 
 **Referencias:** [HackTricks - SQLi](https://book.hacktricks.xyz/pentesting-web/sql-injection) · [OWASP SQLi](https://owasp.org/www-community/attacks/SQL_Injection) · [PortSwigger SQLi](https://portswigger.net/web-security/sql-injection)

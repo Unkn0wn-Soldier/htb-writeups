@@ -61,7 +61,7 @@ telnet <IP>
 
 > [!tip] Variaciones comunes
 > - Telnet/SSH: `root` sin contraseña (Meow)
-> - FTP: usuario `anonymous`, cualquier contraseña o vacía (Fawn — técnicamente distinto, ver [[Ftp-Anonymous]] si se crea)
+> - FTP: usuario `anonymous`, cualquier contraseña o vacía (Fawn — cuenta pública `anonymous`, variante de la misma familia)
 > - RDP/paneles web: buscar el producto exacto en [DefaultCreds-Cheat-Sheet](https://github.com/ihebski/DefaultCreds-cheat-sheet)
 
 ---
@@ -85,8 +85,8 @@ telnet <IP>
 
 ## Dónde la usé
 
-- `[[HTB/Meow/Meow]]` — Telnet, `root` sin contraseña, shell root directa
-- `[[HTB/Fawn/Fawn]]` — FTP anonymous login (variante: cuenta pública, no credencial filtrada)
+- [[HTB/Meow/Meow]] — Telnet, `root` sin contraseña, shell root directa
+- [[HTB/Fawn/Fawn]] — FTP anonymous login (variante: cuenta pública, no credencial filtrada)
 
 ---
 

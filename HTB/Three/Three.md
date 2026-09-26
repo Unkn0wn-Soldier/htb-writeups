@@ -143,8 +143,7 @@ N/A esperado — Tier 1 apunta a foothold, no post-explotación completa. Confir
 
 ## 7. Conexiones
 
-- Similar: `[[HTB/Appointment/Appointment]]`, `[[HTB/Sequel/Sequel]]` (explotación de aplicación pública, distinta superficie: SQLi/MySQL vs cloud storage)
-- Técnica: `[[Técnicas/AWS-S3-Misconfiguration]]`
-- Teoría: [`Teoria_S3_Three`](obsidian://open?vault=RedTeamLab&file=HTB%2FThree%2FTeoria_S3_Three.pdf)
+- Similar: [[HTB/Appointment/Appointment]], [[HTB/Sequel/Sequel]] (explotación de aplicación pública, distinta superficie: SQLi/MySQL vs cloud storage)
+- Técnica: [[Técnicas/3_Explotación/AWS-S3-Misconfiguration]]
 
 **Referencias:** [MITRE T1190](https://attack.mitre.org/techniques/T1190/) · [MITRE T1595.002](https://attack.mitre.org/techniques/T1595/002/) · [AWS S3 Security Best Practices](https://docs.aws.amazon.com/AmazonS3/latest/userguide/security-best-practices.html)

@@ -175,9 +175,8 @@ N/A — acceso directo a datos vía cliente MySQL, sin necesidad de shell en el 
 
 ## 7. Conexiones
 
-- Similar: `[[HTB/Redeemer/Redeemer]]` (servicio de BD sin autenticación — mismo patrón, distinto motor)
-- Siguiente nivel: `[[HTB/Vaccine/Vaccine]]` (MySQL + SQLi + sqlmap)
-- Técnica: `[[Técnicas/3_Explotación/MySQL-Unauthenticated]]`
-- Teoría: [`Teoria_MySQL_SinAuth`](obsidian://open?vault=RedTeamLab&file=HTB%2FSequel%2FTeoria_MySQL_SinAuth.pdf)
+- Similar: [[HTB/Redeemer/Redeemer]] (servicio de BD sin autenticación — mismo patrón, distinto motor)
+- Siguiente nivel: [[HTB/Vaccine/Vaccine]] (MySQL + SQLi + sqlmap)
+- Técnica: [[Técnicas/3_Explotación/MySQL-Unauthenticated]]
 
 **Referencias:** [HackTricks - MySQL](https://book.hacktricks.xyz/network-services-pentesting/pentesting-mysql) · [MySQL Security Docs](https://dev.mysql.com/doc/refman/8.0/en/security.html)

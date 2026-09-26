@@ -86,7 +86,7 @@ john --format=netntlmv2 <archivo_hash> --wordlist=rockyou.txt
 
 ## Dónde la usé
 
-- (pendiente) — todavía no resuelvo una máquina con poisoning pasivo real de broadcast LLMNR/NBT-NS. `[[HTB/Responder/Responder]]` usa la misma herramienta (Responder) pero el vector de disparo fue distinto — ver `[[Técnicas/5_Active-Directory/Forced-Authentication-SMB]]`.
+- (pendiente) — todavía no resuelvo una máquina con poisoning pasivo real de broadcast LLMNR/NBT-NS. [[HTB/Responder/Responder]] usa la misma herramienta (Responder) pero el vector de disparo fue distinto — ver [[Técnicas/5_Active-Directory/Forced-Authentication-SMB]].
 
 ---
 

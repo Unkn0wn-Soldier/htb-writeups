@@ -61,7 +61,7 @@
 | 10  | Sequel      | ✅ Terminada | [[HTB/Sequel/Sequel]]          | [[Técnicas/3_Explotación/MySQL-Unauthenticated]] |
 | 11  | Crocodile   | ✅ Terminada | [[HTB/Crocodile/Crocodile]]   | [[Técnicas/3_Explotación/Credential-Reuse]] |
 | 12  | Responder   | ✅ Terminada | [[HTB/Responder/Responder]]  | [[Técnicas/5_Active-Directory/Forced-Authentication-SMB]] |
-| 13  | Three       | ✅ Terminada | [[HTB/Three/Three]]           | [[Técnicas/AWS-S3-Misconfiguration]] |
+| 13  | Three       | ✅ Terminada | [[HTB/Three/Three]]           | [[Técnicas/3_Explotación/AWS-S3-Misconfiguration]] |
 | 14  | Ignition    | ⬜ Pendiente | —                               | — |
 | 15  | Bike        | ⬜ Pendiente | —                               | — |
 | 16  | Pennyworth  | ⬜ Pendiente | —                               | — |
@@ -95,7 +95,7 @@ Cada técnica documentada enlaza de vuelta a todas las máquinas donde se usó �
 | [[Técnicas/3_Explotación/Credential-Reuse]] | Initial Access (T1078) | Crocodile |
 | [[Técnicas/5_Active-Directory/LLMNR-NBTNS-Poisoning]] | Credential Access (T1557.001) | (pendiente — teoría estudiada, sin máquina resuelta aún) |
 | [[Técnicas/5_Active-Directory/Forced-Authentication-SMB]] | Credential Access (T1187) | Responder |
-| [[Técnicas/AWS-S3-Misconfiguration]] | Initial Access (T1190) | Three |
+| [[Técnicas/3_Explotación/AWS-S3-Misconfiguration]] | Initial Access (T1190) | Three |
 | [[Técnicas/3_Explotación/SQLi-to-RCE-sqlmap]] | Initial Access / Execution (T1190) | Vaccine |
 | [[Técnicas/4_PrivEsc/GTFOBins-Sudo-Abuse]] | Privilege Escalation (T1548.003) | Vaccine |
 

@@ -92,7 +92,7 @@ id
 
 ## Dónde la usé
 
-- `[[HTB/Vaccine/Vaccine]]` — `sudo -l` mostraba `(ALL) /bin/vi /etc/postgresql/11/main/pg_hba.conf`. El intento directo con `-c` falló por restricción de argumentos; funcionó abriendo el archivo autorizado tal cual y usando `:set shell=/bin/sh` + `:shell` desde dentro de vi.
+- [[HTB/Vaccine/Vaccine]] — `sudo -l` mostraba `(ALL) /bin/vi /etc/postgresql/11/main/pg_hba.conf`. El intento directo con `-c` falló por restricción de argumentos; funcionó abriendo el archivo autorizado tal cual y usando `:set shell=/bin/sh` + `:shell` desde dentro de vi.
 
 ---
 
