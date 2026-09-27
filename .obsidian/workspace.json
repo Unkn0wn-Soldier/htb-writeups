@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Cheatsheets/Command Basics Tmux.md",
+                "file": "Técnicas/2_Enumeración/SMB_Null_Session.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Command Basics Tmux"
+              "title": "SMB_Null_Session"
             }
           }
         ]
@@ -200,8 +200,14 @@
   },
   "active": "b66a05ea1cae4643",
   "lastOpenFiles": [
+    "Técnicas/2_Enumeración/Web-Enumeration.md",
+    "Técnicas/2_Enumeración/SMB_Null_Session.md",
+    "Técnicas/2_Enumeración/README.md",
     "Cheatsheets/Repaso_Escaneo_Servicios.md",
     "Cheatsheets/Command Basics Tmux.md",
+    "Técnicas/3_Explotación/AWS-S3-Misconfiguration.md",
+    "HTB/Appointment/Pasted image 20260810212152.png",
+    "Recursos_GitHub_Baules.md",
     "Técnicas/1_Reconocimiento/README.md",
     "Técnicas/SQLi-to-RCE-sqlmap.md",
     "CLAUDE.md.tmp.25856.e1268493c92d",
@@ -223,13 +229,8 @@
     "HTB/Vaccine/Vaccine.md",
     "Metodologia_HTB.md",
     "HTB/Three/Three.md",
-    "00_Index.md",
     "HTB/Three/desktop.ini",
-    "Excalidraw/Drawing 2026-06-19 23.08.02.excalidraw.md",
     "HTB/Three/Teoria_S3_Three.pdf",
-    "HTB/Responder/Responder.md",
-    "HTB/Appointment/Appointment.md",
-    "Técnicas/Credential-Reuse.md",
     "Técnicas/Credential-Reuse.md.tmp.8284.8ea84eb9865b",
     "HTB/Appointment/Teoria_SQLi_LoginBypass.pdf",
     "HTB/Crocodile/Crocodile.md.tmp.8284.4f9d76b01554",
@@ -246,7 +247,6 @@
     "Pasted image 20260810213418.png",
     "Pasted image 20260810212152.png",
     "Sin título.canvas",
-    "Pasted image 20260613024625.png",
-    "Pasted Image 20260613022402_319.png"
+    "Pasted image 20260613024625.png"
   ]
 }

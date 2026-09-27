@@ -47,6 +47,7 @@ onesixtyone -c dict.txt <IP>
 ```bash
 # FTP anónimo
 ftp <IP>            # anonymous / (enter) → ls, get <archivo>
+ftp -p <IP>         # modo pasivo (cliente abre conexión de datos) — útil tras NAT/firewall
 # MySQL sin auth
 mysql -h <IP> -u root --skip-ssl        # --skip-ssl si ERROR 2026
 # Redis sin auth
@@ -106,4 +107,5 @@ evil-winrm -i <IP> -u <user> -p <pass>                      # WinRM con creds
 
 - [[Metodologia_HTB]] — protocolo completo y regla de los 45 min
 - [[00_Index]] — estado de máquinas y base de técnicas
-- [[Cheatsheets/Command Basics Tmux|Tmux]] · [[Cheatsheets/Repaso_Escaneo_Servicios|Repaso Escaneo]]
+- [[Cheatsheets/Command Basics Tmux|Tmux]]
+- [[Técnicas/2_Enumeración/SNMP_Enumeration|SNMP Enumeration]]
