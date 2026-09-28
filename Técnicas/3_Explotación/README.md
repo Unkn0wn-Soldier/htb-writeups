@@ -10,3 +10,5 @@
 - [[Técnicas/3_Explotación/SQLi-to-RCE-sqlmap|SQLi → RCE (sqlmap)]]
 - [[Técnicas/3_Explotación/MySQL-Unauthenticated|MySQL sin auth]]
 - [[Técnicas/3_Explotación/Redis-Unauthenticated|Redis sin auth]]
+- [[Técnicas/3_Explotación/WordPress-Plugin-Arbitrary-File-Read|WordPress Plugin Arbitrary File Read]]
+- [[Técnicas/3_Explotación/AWS-S3-Misconfiguration|AWS S3 Misconfiguration]]

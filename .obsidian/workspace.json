@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "!_Antes de COMENZAR-CERRAR Obsidian_!.md",
+                "file": "Técnicas/2_Enumeración/Web-Enumeration.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "!_Antes de COMENZAR-CERRAR Obsidian_!"
+              "title": "Web-Enumeration"
             }
           }
         ]
@@ -200,6 +200,9 @@
   },
   "active": "b66a05ea1cae4643",
   "lastOpenFiles": [
+    "Técnicas/3_Explotación/WordPress-Plugin-Arbitrary-File-Read.md",
+    "Técnicas/3_Explotación/WordPress-Plugin-Arbitrary-File-Read.md.tmp.3808.b4b5805056d5",
+    "!_Antes de COMENZAR-CERRAR Obsidian_!.md",
     "Recursos_GitHub_Baules.md",
     "Técnicas/2_Enumeración/SMB_Null_Session.md",
     "Técnicas/2_Enumeración/Web-Enumeration.md",
@@ -222,13 +225,11 @@
     "Perfil_César_Asesoría.md",
     "CLAUDE.md",
     "Sin título.md",
-    "!_Antes de COMENZAR-CERRAR Obsidian_!.md",
     "_Templates/Technique_Template.md",
     "_Templates/HTB_Template_Maquina.md",
     "_Templates/CRedTeamLabHTBAppointmentTeoria_SQLi_LoginBypass.pdf",
     "HTB/Vaccine/Vaccine.md",
     "Metodologia_HTB.md",
-    "HTB/Three/Three.md",
     "HTB/Three/desktop.ini",
     "HTB/Three/Teoria_S3_Three.pdf",
     "Técnicas/Credential-Reuse.md.tmp.8284.8ea84eb9865b",
@@ -241,7 +242,6 @@
     "Pasted image 20260613022341.png",
     "Pasted image 20260613023557.png",
     "HTB/Dancing/Img/Dancing.canvas",
-    "CRedTeamLabHTBAppointmentTeoria_SQLi_LoginBypass.pdf",
     "Pasted image 20260810213509.png",
     "Pasted image 20260810213445.png",
     "Pasted image 20260810213418.png",
