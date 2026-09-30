@@ -1,2 +1,11 @@
 
 Configuracion/Tokens_API.md
+# Local Pi runtime state
+.atl/
+
+# Obsidian: estado de UI y binarios de plugins (se reinstalan; data.json de cada plugin sí se versiona)
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.obsidian/plugins/*/main.js
+.obsidian/plugins/*/manifest.json
+.obsidian/plugins/*/styles.css
