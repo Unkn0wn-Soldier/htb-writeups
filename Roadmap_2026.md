@@ -240,8 +240,3 @@ Cifras y fuente de cada una, para poder auditar este cronograma más adelante:
 ## Post-CPTS — Hoja de Ruta 2028
 
 CPTS + título en Ciberseguridad (2027) = perfil competitivo para pentesting en Chile. Siguiente paso: **OSCP+** (OffSec) pasa de 2027 a 2028 por el corrimiento de este roadmap — revisar cuando el CPTS esté rendido, no antes.
-
-> [!warning] Pendiente de alinear
-> `Perfil_César_Asesoría.md` (u otro archivo raíz del proyecto) puede seguir listando "CPTS antes de diciembre 2026 · OSCP+ 2027" como objetivo. Ese documento no se tocó en este recálculo — decidir aparte si se actualiza para reflejar la nueva fecha.
-
-En paralelo, **Proyecto Cóndor** puede evolucionar a una propuesta concreta de Red Team as a Service para el mercado chileno: reporting en español, integración normativa local (NCG 461, ISO 27001), y automatización con IA. El corrimiento de fecha del CPTS no cambia esto — solo corre el momento en que hay certificación formal para respaldarlo.

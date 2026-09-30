@@ -37,7 +37,7 @@
 
 ## Cómo estudiar cada módulo
 
-1. Leer teoría → PDF explicativo si el tema es denso (usar `_Templates/pdf_base.py`).
+1. Leer la teoría del módulo y condensar lo esencial en una nota de `Técnicas/`.
 2. Resolver las preguntas del módulo.
 3. Comando/técnica reutilizable → a `Cheatsheets/` o nota en `Técnicas/`.
 4. Marcar `[x]` aquí + registrar en [[Roadmap_2026]].

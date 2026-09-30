@@ -1,0 +1,34 @@
+{
+  "mcpServers": {
+    "deepwiki": {
+      "url": "https://mcp.deepwiki.com/mcp",
+      "protocolVersion": "auto"
+    },
+    "context7": {
+      "url": "https://mcp.context7.com/mcp",
+      "protocolVersion": "auto"
+    },
+    "parallel-search": {
+      "url": "https://search.parallel.ai/mcp",
+      "protocolVersion": "auto",
+      "directTools": false
+    },
+    "notion": {
+      "url": "https://mcp.notion.com/mcp",
+      "auth": "oauth",
+      "protocolVersion": "auto"
+    },
+    "github": {
+      "url": "https://api.githubcopilot.com/mcp",
+      "auth": "oauth",
+      "protocolVersion": "auto"
+    },
+    "chrome-devtools": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "chrome-devtools-mcp@1.6.0"
+      ]
+    }
+  }
+}

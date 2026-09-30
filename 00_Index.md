@@ -30,11 +30,11 @@
 
 ### Directorios
 
-- **HTB/** — Writeup de cada máquina (una carpeta por máquina, incluye PDF de teoría pre-máquina)
+- **HTB/** — Writeup de cada máquina (una carpeta por máquina)
 - **Técnicas/** — Base técnica **organizada por fase de ataque** (1_Reconocimiento → 7_Reporting)
 - **Certificaciones/** — Checklists de estudio: [[Certificaciones/CPTS/README|CPTS]] · [[Certificaciones/OSCP/README|OSCP+]]
 - **Cheatsheets/** — Referencia rápida por servicio/herramienta
-- **_Templates/** — Plantillas para máquinas, técnicas y generación de PDF
+- **_Templates/** — Plantillas para máquinas y técnicas
 
 ---
 
