@@ -13,7 +13,7 @@
 | Fase 0 — Starting Point       | 10 / 23 (Tier 0: 4/4 free alcanzable completo · Tier 1: 5/9 · Tier 2: 1/6) |
 | HTB Academy — Penetration Tester Path | 0 / 28 módulos — inscrito 12-sep-2026, ~354h estimadas |
 | Writeups publicados en GitHub | 0                                              |
-| Técnicas documentadas         | 11 — ver [[#Base de Técnicas]]                |
+| Técnicas documentadas         | 12 — ver [[#Base de Técnicas]]                |
 | Certificaciones obtenidas     | —                                              |
 
 > [!danger] Alerta de ritmo — recalibración 12-sep-2026
@@ -98,6 +98,8 @@ Cada técnica documentada enlaza de vuelta a todas las máquinas donde se usó �
 | [[Técnicas/3_Explotación/AWS-S3-Misconfiguration]] | Initial Access (T1190) | Three |
 | [[Técnicas/3_Explotación/SQLi-to-RCE-sqlmap]] | Initial Access / Execution (T1190) | Vaccine |
 | [[Técnicas/4_PrivEsc/GTFOBins-Sudo-Abuse]] | Privilege Escalation (T1548.003) | Vaccine |
+| [[Técnicas/3_Explotación/Shells-Reverse-Bind-Web|Tipos de Shells y Estabilización]] | Execution / Persistence (T1059) | Vaccine, Getting Started (Academy) |
+
 
 ---
 

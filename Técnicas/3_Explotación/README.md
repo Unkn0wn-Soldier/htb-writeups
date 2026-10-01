@@ -12,3 +12,4 @@
 - [[Técnicas/3_Explotación/Redis-Unauthenticated|Redis sin auth]]
 - [[Técnicas/3_Explotación/WordPress-Plugin-Arbitrary-File-Read|WordPress Plugin Arbitrary File Read]]
 - [[Técnicas/3_Explotación/AWS-S3-Misconfiguration|AWS S3 Misconfiguration]]
+- [[Técnicas/3_Explotación/Shells-Reverse-Bind-Web|Tipos de Shells y Estabilización]]
