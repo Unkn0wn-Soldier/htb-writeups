@@ -5,3 +5,4 @@
 ## Técnicas en esta fase
 
 - [[Técnicas/4_PrivEsc/GTFOBins-Sudo-Abuse|GTFOBins / Sudo Abuse]]
+- [[Técnicas/4_PrivEsc/SSH-Key-Pillaging|SSH Key Pillaging & Permissive Permissions]]
